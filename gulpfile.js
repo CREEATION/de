@@ -7,7 +7,6 @@ const del = require('del')
 const fs = require('fs')
 const path = require('path')
 const url = require('url')
-const fetchFavicon = require('@getstation/fetch-favicon').fetchFavicon
 const axios = require('axios')
 const jimp = require('jimp')
 
@@ -74,8 +73,8 @@ const getFavicons = async (websites, destDir) => {
       }
 
       if (!website.hasOwnProperty('emojicon')) {
-        const faviconSize = 16
-        const faviconResizeMode = jimp.RESIZE_NEAREST_NEIGHBOR
+        // const faviconSize = 16
+        // const faviconResizeMode = jimp.RESIZE_NEAREST_NEIGHBOR
 
         faviconUrl =
           'https://www.google.com/s2/favicons?domain=' +
