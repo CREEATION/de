@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@getstation/fetch-favicon": "0.0.4-rc.2",
     "autoprefixer": "^9.7.4",
     "axios": "^0.19.2",
     "browser-sync": "^2.26.7",
