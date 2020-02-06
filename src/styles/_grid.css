@@ -1,0 +1,36 @@
+header {
+  grid-area: head;
+}
+
+section.profile {
+  grid-area: profile;
+}
+
+main {
+  grid-area: main;
+}
+
+figure {
+  grid-area: avatar;
+}
+
+footer {
+  grid-area: foot;
+}
+
+html {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  height: 100%;
+  display: grid;
+  grid-template-rows: repeat(2, auto) 1fr auto;
+  grid-template-columns: 1fr minmax(min-content, auto) 1fr;
+  grid-template-areas:
+    'head head head'
+    '. profile .'
+    'main main main'
+    'foot foot foot';
+}

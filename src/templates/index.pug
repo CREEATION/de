@@ -6,6 +6,43 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title CREEATION.de
     link(rel="stylesheet", href="css/creeation.css")
+
   body
-    h1 CREEATION
-    p hello world
+    header
+      h1
+        small thomas creeten
+        | CREEATION
+
+    section.profile
+      figure
+        img(src="img/thomas_creeten.png", alt="pixel art side-portrait of thomas creeten")
+
+        figcaption
+          h2
+            | web developer
+            small ux driven development
+              small
+                i for the people
+                |
+                |
+                span.emoji 💖
+                span.supermoji 🦸‍♂️
+
+      aside.social-links
+        each website in data.social
+          - let hostname = modules.url.parse(website.url).hostname.replace("www.", "")
+          - let username = website.title || modules.url.parse(website.url).pathname
+          - let linkTitle = website.name
+          a(href=website.url, alt=linkTitle, title=linkTitle)
+            i.icon
+              if !website.emojicon
+                img(src=`./img/favicons/${hostname}.png`, alt=linkTitle, title=linkTitle)
+              else
+                span= website.emojicon
+            span= username
+
+    main
+      h3 whoops
+      p content etc
+
+    footer &copy; #{new Date().getFullYear()}
