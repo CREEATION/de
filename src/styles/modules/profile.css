@@ -1,3 +1,83 @@
+.m-profile {
+  background: blue;
+}
+
+.m-profile__avatar {
+  & img,
+  & figcaption {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  & img {
+    max-width: 170px;
+  }
+
+  & figcaption {
+    align-self: center;
+    font-size: 1.25rem;
+  }
+}
+
+@media (--media-width--small) {
+  .m-profile__avatar {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+
+    & img,
+    & figcaption {
+      margin: 0;
+    }
+
+    & img {
+      justify-self: right;
+    }
+  }
+}
+
+@media (--media-width--small) and (--media-height--small) {
+  .m-profile__avatar {
+    & img {
+      max-width: 340px;
+    }
+  }
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 25%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes supermoji {
+  0% {
+    transform: scale(0.8) rotate(15deg);
+  }
+  5% {
+    transform: scale(0.9) rotate(16deg);
+  }
+  10% {
+    transform: scale(0.8) rotate(15deg);
+  }
+  15% {
+    transform: scale(1) rotate(18deg);
+  }
+  40% {
+    transform: scale(0.8) rotate(15deg);
+  }
+  100% {
+    transform: scale(0.8) rotate(15deg);
+  }
+}
+
 /* avatar */
 .profile {
   --border-width: 0.25rem;
@@ -60,20 +140,6 @@ section.profile {
   padding: var(--border-width) var(--border-width-double);
 }
 
-@keyframes rainbow {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 25%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 .profile figcaption h2 small small i {
   background-image: repeating-linear-gradient(
     45deg,
@@ -108,27 +174,6 @@ section.profile {
   letter-spacing: 0.1em;
   text-align: center;
   line-height: 2;
-}
-
-@keyframes supermoji {
-  0% {
-    transform: scale(0.8) rotate(15deg);
-  }
-  5% {
-    transform: scale(0.9) rotate(16deg);
-  }
-  10% {
-    transform: scale(0.8) rotate(15deg);
-  }
-  15% {
-    transform: scale(1) rotate(18deg);
-  }
-  40% {
-    transform: scale(0.8) rotate(15deg);
-  }
-  100% {
-    transform: scale(0.8) rotate(15deg);
-  }
 }
 
 .profile figcaption h2 small small .supermoji {
@@ -226,30 +271,4 @@ section.profile {
 .social-links a:focus .icon + span {
   padding-right: var(--border-width);
   font-size: var(--font-size_social-links);
-}
-
-@media (max-width: 16rem) {
-  section.profile {
-    padding-bottom: 1.5rem;
-  }
-
-  .social-links {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    top: auto;
-    left: auto;
-  }
-
-  .social-links a {
-    display: initial;
-    margin-bottom: var(--box-gap);
-  }
-
-  .social-links a .icon + span {
-    transition: none;
-    padding-right: var(--icon-padding_social-links);
-    font-size: var(--font-size_social-links);
-  }
 }

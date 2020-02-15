@@ -156,7 +156,7 @@ async function images(cb) {
 function styles(cb) {
   pump(
     [
-      src('./src/styles/**/*.css'),
+      src('./src/styles/creeation.css'),
       stylelint({
         reporters: [{ formatter: 'string', console: true }],
       }),
@@ -184,6 +184,8 @@ function scripts(cb) {
 
 function serve(cb) {
   browserSync({
+    notify: false,
+    open: false,
     server: {
       baseDir: './dist',
     },
@@ -194,43 +196,24 @@ function clean() {
   return del(['./dist'])
 }
 
-exports.default = series(
+exports.default = exports.build = series(
   clean,
   parallel(templates, images, styles, scripts),
   serve
 )
-exports.build = exports.default
 
 exports.templates = templates
 exports.images = images
 exports.styles = styles
 exports.scripts = scripts
-exports.serve = series(exports.build, serve)
+exports.serve = serve
 
-watch('./src/data/**/*.json', (cb) => {
-  exports.templates()
-  exports.images()
-  exports.styles()
-  exports.scripts()
-  cb()
-})
-
-watch('./src/templates/**/*', (cb) => {
-  exports.templates()
-  cb()
-})
-
-watch('./src/images/**/*', (cb) => {
-  exports.images()
-  cb()
-})
-
-watch('./src/styles/**/*', (cb) => {
-  exports.styles()
-  cb()
-})
-
-watch('./src/scripts/**/*', (cb) => {
-  exports.scripts()
-  cb()
-})
+watch('./src/templates/**/*', { queue: true }, series(templates))
+watch('./src/images/**/*', { queue: true }, series(images))
+watch('./src/styles/**/*', { queue: true }, series(styles))
+watch('./src/scripts/**/*', { queue: true }, series(scripts))
+watch(
+  './src/data/**/*.json',
+  { queue: true },
+  series(parallel(templates, images, styles, scripts))
+)

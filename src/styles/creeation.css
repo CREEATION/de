@@ -1,7 +1,10 @@
-@import '_base.css';
-@import '_grid.css';
+@import url('modern-css-reset');
 
-@import 'modules/header.css';
-@import 'modules/profile.css';
-@import 'modules/body.css';
-@import 'modules/footer.css';
+@import '_base';
+@import '_grid';
+@import '_debug';
+
+@import 'modules/header';
+@import 'modules/profile';
+@import 'modules/body';
+@import 'modules/footer';

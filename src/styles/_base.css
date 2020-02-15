@@ -1,13 +1,59 @@
+@custom-media --media-width--small (width >= 350px);
+@custom-media --media-height--small (height >= 500px);
+
+@custom-media --media-width--medium (width >= 700px);
+@custom-media --media-height--medium (height >= 600px);
+
+@custom-media --media-width--normal (width >= 1000px);
+@custom-media --media-height--normal (height >= 700px);
+
+@custom-media --media-width--large (width >= 1200px);
+@custom-media --media-height--large (height >= 800px);
+
 :root {
-  --text-color_primary: #77cc25;
-  --text-color: #f7f7f7;
   --bg-color: #161616;
 
-  --font-size: 24px;
+  --text-color--primary: #77cc25;
+  --text-color: #f7f7f7;
+
+  --font-size--base: 11px;
+  --font-size--small: 12px;
+  --font-size--medium: 18px;
+  --font-size--normal: 24px;
+  --font-size--large: 32px;
 }
 
 html {
-  font-size: var(--font-size);
+  font-size: var(--font-size--base);
+}
+
+@media (--media-width--small) {
+  :root {
+    --font-size--base: var(--font-size--small);
+  }
+}
+
+@media (--media-width--medium) {
+  :root {
+    --font-size--base: var(--font-size--medium);
+  }
+}
+
+@media (--media-width--normal) {
+  :root {
+    --font-size--base: var(--font-size--normal);
+  }
+}
+
+@media (--media-width--large) {
+  :root {
+    --font-size--base: var(--font-size--large);
+  }
+}
+
+h1,
+h2 {
+  color: var(--text-color--primary);
 }
 
 h1,
@@ -16,37 +62,36 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
-
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
 
-h1,
-h2 {
-  color: var(--text-color_primary);
-}
+  & small {
+    color: var(--text-color);
+    display: block;
+    font-weight: normal;
 
-h1 small,
-h2 small,
-h3 small,
-h4 small,
-h5 small,
-h6 small {
-  display: block;
-
-  color: var(--text-color);
-  font-weight: normal;
-}
-
-h1 small small,
-h2 small small,
-h3 small small,
-h4 small small,
-h5 small small,
-h6 small small {
-  text-align: right;
+    & small {
+      text-align: right;
+    }
+  }
 }
 
 .emoji {
   font-style: normal;
+}
+
+.pixelart {
+  image-rendering: pixelated;
+}
+
+/* from https://css-tricks.com/a-complete-guide-to-links-and-buttons/ */
+.hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }

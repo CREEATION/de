@@ -4,45 +4,63 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
+
     title CREEATION.de
     link(rel="stylesheet", href="css/creeation.css")
 
-  body
-    header
-      h1
-        small thomas creeten
-        | CREEATION
+  body.debug
+    .page
+      header.m-header
+        h1
+          .hidden my real name is
+          small thomas creeten
+          .hidden and my artist/programming name is usually
+          | CREEATION
+          .hidden
+            | which is derived from my lastname "c r e e t e n".
+            |
+            | you only know this because you're using a screenreader,
+            |
+            | or specifically looking at the source code of this website 👀
+            |
+            | either way, if you're looking for a front-end guy, consider contacting me via
+            |
+            a(href="mailto:tcreeten@gmail.com") email
+            | or
+            a(href="https://t.me/creeten") telegram
+            | . i'd be happy to hear from you 🐢
 
-    section.profile
-      figure
-        img(src="img/thomas_creeten.png", alt="pixel art side-portrait of thomas creeten")
 
-        figcaption
-          h2
-            | web developer
-            small ux driven development
-              small
-                i for the people
-                |
-                |
-                span.emoji 💖
-                span.supermoji 🦸‍♂️
+      section.m-profile
+        figure.m-profile__avatar
+          img.pixelart(src="img/thomas_creeten.png",
+            alt="pixel art side-portrait of thomas creeten, doing a thinking-pose while wearing a green t-shirt and a black headset.")
 
-      aside.social-links
-        each website in data.social
-          - let hostname = modules.url.parse(website.url).hostname.replace("www.", "")
-          - let username = website.title || modules.url.parse(website.url).pathname
-          - let linkTitle = website.name
-          a(href=website.url, alt=linkTitle, title=linkTitle)
-            i.icon
-              if !website.emojicon
-                img(src=`./img/favicons/${hostname}.png`, alt=linkTitle, title=linkTitle)
-              else
-                span= website.emojicon
-            span= username
+          figcaption
+            h2
+              | web developer
+              small ux driven development
+                small for the people
+                  |
+                  |
+                  span.emoji 💖
+                  span.supermoji 🦸‍♂️
 
-    main
-      h3 whoops
-      p content etc
+        //- aside.m-profile__social-links
+        //-   each website in data.social
+        //-     - let hostname = modules.url.parse(website.url).hostname.replace("www.", "")
+        //-     - let username = website.title || modules.url.parse(website.url).pathname
+        //-     - let linkTitle = website.name
+        //-     a(href=website.url, alt=linkTitle, title=linkTitle)
+        //-       i.icon
+        //-         if !website.emojicon
+        //-           img(src=`./img/favicons/${hostname}.png`, alt=linkTitle, title=linkTitle)
+        //-         else
+        //-           span= website.emojicon
+        //-       span= username
 
-    footer &copy; #{new Date().getFullYear()}
+      main.m-content
+        h3 whoops
+        p content etc
+
+      footer.m-footer &copy; #{new Date().getFullYear()}

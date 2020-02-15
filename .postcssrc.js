@@ -1,12 +1,13 @@
 module.exports = {
   map: false,
-  plugins: {
-    'postcss-import': {
+  plugins: [
+    require('postcss-import')({
       from: './src/styles/creeation.css',
-    },
-    'postcss-preset-env': {} || null,
-    'autoprefixer': {
-      cascade: false,
-    },
-  },
+    }),
+    require('postcss-preset-env')({
+      stage: 0,
+    }),
+    // require('postcss-combine-media-query'),
+    require('autoprefixer'),
+  ],
 }

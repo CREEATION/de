@@ -1,0 +1,54 @@
+:root {
+  --dbg-border--text: 'default';
+  --dbg-border--color: rebeccapurple;
+  --dbg-border--width: 5px;
+  --dbg-border--text-padding: calc(var(--dbg-border--width) / 2);
+  --dbg-border--font-size: 11px;
+}
+
+body.debug .page {
+  box-shadow: 0 0 0 var(--dbg-border--width) var(--dbg-border--color) inset;
+  padding: var(--dbg-border--width);
+
+  &::before {
+    content: var(--dbg-border--text);
+    background: #000;
+    border: var(--dbg-border--text-padding) solid var(--dbg-border--color);
+
+    font-size: var(--dbg-border--font-size);
+    font-weight: bold;
+
+    padding: var(--dbg-border--text-padding) var(--dbg-border--width);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+@media (--media-width--small) {
+  :root {
+    --dbg-border--text: 'small';
+    --dbg-border--color: red;
+  }
+}
+
+@media (--media-width--medium) {
+  :root {
+    --dbg-border--text: 'medium';
+    --dbg-border--color: blue;
+  }
+}
+
+@media (--media-width--normal) {
+  :root {
+    --dbg-border--text: 'normal';
+    --dbg-border--color: green;
+  }
+}
+
+@media (--media-width--large) {
+  :root {
+    --dbg-border--text: 'large';
+    --dbg-border--color: yellow;
+  }
+}
