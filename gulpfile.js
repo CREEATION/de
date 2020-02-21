@@ -186,6 +186,7 @@ function serve(cb) {
   browserSync({
     notify: false,
     open: false,
+    online: false,
     server: {
       baseDir: './dist',
     },

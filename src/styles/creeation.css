@@ -4,7 +4,9 @@
 @import '_grid';
 @import '_debug';
 
+@import 'modules/body';
+
 @import 'modules/header';
 @import 'modules/profile';
-@import 'modules/body';
+@import 'modules/content';
 @import 'modules/footer';

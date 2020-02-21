@@ -1,8 +1,23 @@
 .m-profile {
-  background: blue;
+  --avatar-size: 170px;
+  --avatar-border-width: 0.1rem;
+  --avatar-box-shadow-size: calc(var(--avatar-border-width) * 3);
+
+  cursor: default;
+  grid-area: m-profile;
+  height: fit-content;
 }
 
 .m-profile__avatar {
+  --box-shadowbackground: var(--bg-color--darker);
+  border-left: var(--avatar-border-width) solid transparent;
+  border-right: var(--avatar-border-width) solid transparent;
+  box-shadow: calc(var(--avatar-box-shadow-size) * -1) 0 0 -1px #77cc25,
+    var(--avatar-box-shadow-size) 0 0 -1px #77cc25;
+  height: 100%;
+  margin: 0 auto;
+  width: fit-content;
+
   & img,
   & figcaption {
     margin: 0 auto;
@@ -10,19 +25,42 @@
   }
 
   & img {
-    max-width: 170px;
+    align-self: center;
+    max-width: calc(var(--avatar-size) + var(--avatar-border-width) * 2);
   }
 
   & figcaption {
     align-self: center;
-    font-size: 1.25rem;
+    font-size: 1.25em;
+    padding: 1rem 0.25rem 1.25rem;
+    text-align: center;
+  }
+
+  & h2 {
+    line-height: 1.25em;
+  }
+
+  & h2 .h-subtitle {
+    margin: 0 auto;
+  }
+
+  & h2 .h-subtitle--addon {
+    display: block;
+    text-align: center;
   }
 }
 
 @media (--media-width--small) {
+  .m-profile {
+    background-color: var(--bg-color);
+  }
+
   .m-profile__avatar {
+    background: unset;
     display: grid;
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: auto 1fr;
+    margin: unset;
+    width: unset;
 
     & img,
     & figcaption {
@@ -30,15 +68,103 @@
     }
 
     & img {
+      border-right: var(--avatar-border-width) solid transparent;
+      box-shadow: var(--avatar-border-width) 0 #77cc25;
       justify-self: right;
+    }
+
+    & figcaption {
+      padding: 0 1rem;
+      text-align: initial;
+    }
+
+    & h2 .h-subtitle {
+      font-size: 0.75em;
+      line-height: 1.25em;
+      margin: initial;
+      width: fit-content;
+    }
+
+    & h2 .h-subtitle--addon {
+      animation: rainbow 7s linear infinite;
+      background-image: repeating-linear-gradient(
+        45deg,
+        white,
+        violet,
+        cyan,
+        green,
+        yellow,
+        orange,
+        red,
+        violet,
+        white
+      );
+      background-clip: text;
+      background-size: 800% 800%;
+      color: transparent;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      margin-top: 0.5em;
+      text-align: right;
+      text-shadow: initial;
+    }
+
+    & h2 .emoji-container {
+      color: initial;
+      font-family: initial;
+      font-weight: initial;
+      letter-spacing: initial;
+      margin-left: -0.25em;
     }
   }
 }
 
-@media (--media-width--small) and (--media-height--small) {
+@media (--media-width--medium) {
   .m-profile__avatar {
+    grid-template-columns: auto auto;
+
     & img {
-      max-width: 340px;
+      max-width: calc(var(--avatar-size) * 2 + var(--avatar-border-width) * 2);
+    }
+
+    & figcaption {
+      padding-left: 1rem;
+    }
+  }
+}
+
+@media (--media-width--normal) {
+  .m-profile {
+    font-size: var(--font-size--normal);
+  }
+}
+
+@media (--media-width--large) {
+  .m-profile {
+    align-self: center;
+    /* background: linear-gradient(
+        rgba(255, 255, 255, 0.025) 5%,
+        transparent 5%,
+        transparent 95%,
+        rgba(0, 0, 0, 0.15) 95%
+      ),
+      linear-gradient(
+        transparent 5%,
+        rgba(0, 0, 0, 0.025) 5%,
+        rgba(255, 255, 255, 0.025) 95%,
+        transparent 95%
+      ); */
+  }
+
+  .m-profile__avatar {
+    grid-template-columns: auto 1fr;
+
+    & img {
+      border-top: none;
+      height: calc(var(--avatar-size) * 2);
+      justify-self: start;
+      width: auto;
     }
   }
 }
@@ -57,33 +183,12 @@
   }
 }
 
-@keyframes supermoji {
-  0% {
-    transform: scale(0.8) rotate(15deg);
-  }
-  5% {
-    transform: scale(0.9) rotate(16deg);
-  }
-  10% {
-    transform: scale(0.8) rotate(15deg);
-  }
-  15% {
-    transform: scale(1) rotate(18deg);
-  }
-  40% {
-    transform: scale(0.8) rotate(15deg);
-  }
-  100% {
-    transform: scale(0.8) rotate(15deg);
-  }
-}
-
-/* avatar */
+/* avatar
 .profile {
   --border-width: 0.25rem;
   --border-width-double: calc(var(--border-width) * 2);
 
-  --icon-size_social-links: 16px; /* @TODO: get proper favicon fetcher, can't use anything other than 16px here */
+  --icon-size_social-links: 16px; /* @TODO: get proper favicon fetcher, can't use anything other than 16px here
   --icon-padding_social-links: var(--border-width-double);
 
   --font-size_social-links: 0.75rem;
@@ -202,13 +307,13 @@ section.profile {
     var(--transition-func_supermoji) infinite;
 }
 
-/* social bar */
+/* social bar
 .social-links {
   position: absolute;
   top: calc(var(--border-width) + var(--box-gap));
   left: calc((var(--border-width) + var(--box-gap)) * -1);
 
-  /* border-left: var(--border-width) solid; */
+  /* border-left: var(--border-width) solid;
   box-shadow: var(--border-width) 0 0 inset;
 }
 
@@ -271,4 +376,4 @@ section.profile {
 .social-links a:focus .icon + span {
   padding-right: var(--border-width);
   font-size: var(--font-size_social-links);
-}
+} */

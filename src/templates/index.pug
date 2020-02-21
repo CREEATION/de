@@ -8,15 +8,22 @@ html(lang="en")
     title CREEATION.de
     link(rel="stylesheet", href="css/creeation.css")
 
-  body.debug
+  body
     .page
       header.m-header
         h1
-          .hidden my real name is
-          small thomas creeten
-          .hidden and my artist/programming name is usually
+          i.visually-hidden hello! my real name is
+          |
+          |
+          small.h-subtitle thomas creeten
+          |
+          |
+          i.visually-hidden and my artist/programming name is usually
+          |
           | CREEATION
-          .hidden
+          |
+          i.visually-hidden
+            |
             | which is derived from my lastname "c r e e t e n".
             |
             | you only know this because you're using a screenreader,
@@ -26,10 +33,11 @@ html(lang="en")
             | either way, if you're looking for a front-end guy, consider contacting me via
             |
             a(href="mailto:tcreeten@gmail.com") email
+            |
             | or
+            |
             a(href="https://t.me/creeten") telegram
             | . i'd be happy to hear from you 🐢
-
 
       section.m-profile
         figure.m-profile__avatar
@@ -39,12 +47,13 @@ html(lang="en")
           figcaption
             h2
               | web developer
-              small ux driven development
-                small for the people
+              small.h-subtitle ux driven development
+                small.h-subtitle--addon for the people
                   |
                   |
-                  span.emoji 💖
-                  span.supermoji 🦸‍♂️
+                  span.emoji-container
+                    span.emoji 💖
+                    span.supermoji 🦸‍♂️
 
         //- aside.m-profile__social-links
         //-   each website in data.social
@@ -59,8 +68,17 @@ html(lang="en")
         //-           span= website.emojicon
         //-       span= username
 
-      main.m-content
-        h3 whoops
-        p content etc
+      //- main.m-content
+      //-   h3 whoops
+      //-   p content etc
 
-      footer.m-footer &copy; #{new Date().getFullYear()}
+      footer.m-footer: small &copy; #{new Date().getFullYear()}
+        |
+        |
+        span creeation.de
+        |
+        |
+        | /
+        |
+        |
+        span thomas creeten
