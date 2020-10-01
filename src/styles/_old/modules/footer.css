@@ -1,0 +1,28 @@
+body > footer {
+  align-self: end;
+  font-size: var(--font-size--small);
+  color: #777;
+  grid-area: footer;
+
+  text-align: center;
+  cursor: default;
+  text-transform: lowercase;
+  padding: 0.7rem;
+  word-spacing: -0.1rem;
+
+  & span {
+    display: inline-block;
+  }
+
+  & .logo {
+    width: 7em;
+    filter: contrast(0);
+    margin: 0 auto 1.6em;
+  }
+}
+
+@media (--media-width--small) {
+  body > footer {
+    font-size: var(--font-size--medium);
+  }
+}

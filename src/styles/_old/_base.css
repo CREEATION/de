@@ -1,8 +1,10 @@
 :root {
+  --color-primary: #77cc25;
+
   --bg-color: #161616;
   --bg-color--darker: #131313;
 
-  --text-color--primary: #77cc25;
+  --text-color--primary: var(--color-primary);
   --text-color: #f7f7f7;
 
   --font-size--base: 11px;
@@ -59,9 +61,12 @@ u {
   }
 }
 
-h1,
-h2 {
-  color: var(--text-color--primary);
+.primary-color {
+  color: var(--color-primary);
+}
+
+.primary-font {
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 h1,
@@ -70,8 +75,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
   & .h-subtitle {
     color: var(--text-color);
     display: block;
@@ -83,22 +86,14 @@ h6 {
   }
 }
 
-.emoji-container {
+.emoji {
   display: inline-block;
-}
-
-.emoji,
-.supermoji {
+  font-style: normal;
   text-shadow: none;
 }
 
-.emoji {
-  font-style: normal;
-}
-
-.supermoji {
-  display: inline-block;
-  transform: scale(1.5);
+.emoji-large {
+  font-size: 1.25em;
 }
 
 .pixelart {
@@ -122,4 +117,23 @@ h6 {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+.rainbow-background {
+  animation: rainbow 7s linear infinite;
+  background-image: repeating-linear-gradient(
+    45deg,
+    white,
+    violet,
+    cyan,
+    green,
+    yellow,
+    orange,
+    red,
+    violet,
+    white
+  );
+  background-clip: text;
+  background-size: 800% 800%;
+  color: transparent;
 }

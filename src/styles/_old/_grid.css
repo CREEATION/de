@@ -10,20 +10,20 @@
 @custom-media --media-width--large (width >= 1200px);
 @custom-media --media-height--large (height >= 800px);
 
-.page {
+body {
   display: grid;
   grid-template-areas:
-    'm-header'
-    'm-profile'
-    'm-footer';
+    "header"
+    "portrait"
+    "footer";
   min-height: inherit;
 }
 
 @media (--media-width--large) {
-  .page {
+  body {
     grid-template-areas:
-      'm-header m-profile'
-      'm-footer m-footer';
+      "header portrait"
+      "footer footer";
     grid-template-columns: 0.5fr 1fr;
     grid-template-rows: 1fr auto;
   }

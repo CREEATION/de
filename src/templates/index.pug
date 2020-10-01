@@ -6,79 +6,50 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
 
     title CREEATION.de
+
     link(rel="stylesheet", href="css/creeation.css")
 
-  body
+  body.rainbow.rainbow--border
     .page
-      header.m-header
-        h1
-          i.visually-hidden hello! my real name is
-          |
-          |
-          small.h-subtitle thomas creeten
-          |
-          |
-          i.visually-hidden and my artist/programming name is usually
-          |
-          | CREEATION
-          |
-          i.visually-hidden
-            |
-            | which is derived from my lastname "c r e e t e n".
-            |
-            | you only know this because you're using a screenreader,
-            |
-            | or specifically looking at the source code of this website 👀
-            |
-            | either way, if you're looking for a front-end guy, consider contacting me via
-            |
-            a(href="mailto:tcreeten@gmail.com") email
-            |
-            | or
-            |
-            a(href="https://t.me/creeten") telegram
-            | . i'd be happy to hear from you 🐢
+      section.visually-hidden
+        p Hello! My name is Thomas Creeten and I welcome you to my website!
+        p If you're hearing this, you're probably unable to see what I'd love you to be able to see.
+        p This is why I'll describe what this website is all about in a couple of sentences to the best of my abilities.
+        p You might just wish to skip my blabber, in which case you'd simply press Tab and go explore yourself. 🕵️‍♀️
+        p If you're specifically looking at the source code of this website, this one's probably not for you either. 👀
 
-      section.m-profile
-        figure.m-profile__avatar
+      header.header
+        .header__title
+          h1 Thomas Creeten
+          h2 CREEATION
+
+        figure.header__description
           img.pixelart(src="img/thomas_creeten.png",
             alt="pixel art side-portrait of thomas creeten, doing a thinking-pose while wearing a green t-shirt and a black headset.")
 
           figcaption
-            h2
-              | web developer
-              small.h-subtitle ux driven development
-                small.h-subtitle--addon for the people
-                  |
-                  |
-                  span.emoji-container
-                    span.emoji 💖
-                    span.supermoji 🦸‍♂️
+            span Web Developer
+            br
+            span UX-driven Development
+            br
+            span.rainbow.rainbow--text for the people
+            |
+            |
+            span.emoji 💖
+            span.emoji.emoji--large 🦸‍♂️
 
-        //- aside.m-profile__social-links
-        //-   each website in data.social
-        //-     - let hostname = modules.url.parse(website.url).hostname.replace("www.", "")
-        //-     - let username = website.title || modules.url.parse(website.url).pathname
-        //-     - let linkTitle = website.name
-        //-     a(href=website.url, alt=linkTitle, title=linkTitle)
-        //-       i.icon
-        //-         if !website.emojicon
-        //-           img(src=`./img/favicons/${hostname}.png`, alt=linkTitle, title=linkTitle)
-        //-         else
-        //-           span= website.emojicon
-        //-       span= username
+        nav.header__navigation
+          ul
+            each website in data.social
+              -
+                //- - let hostname = modules.url.parse(website.url).hostname.replace("www.", "")
+                const username = website.title || modules.url.parse(website.url).pathname
+                const linkAlt = username + " (" + website.name + ")"
+                const linkTitle = website.name !== "email" ? website.name + " profile" : "send mail"
 
-      //- main.m-content
-      //-   h3 whoops
-      //-   p content etc
+              li: a(href=website.url, alt=linkAlt, title=linkTitle)= website.name
 
-      footer.m-footer: small &copy; #{new Date().getFullYear()}
-        |
-        |
-        span creeation.de
-        |
-        |
-        | /
-        |
-        |
-        span thomas creeten
+      footer.footer.
+        #[img(src="img/creeation-logo.svg", alt="CREEATION Logo", title="CREEATION")]
+        #[small &copy; #{new Date().getFullYear()}]
+        #[span CREEATION.de / Thomas Creeten]
