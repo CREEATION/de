@@ -1,327 +1,43 @@
-/*
-* Variables
-*/
+@import "../assets/fonts/source_sans_pro/source_sans_pro.css";
+
 :root {
-  --primary-color: #77cc25;
-  --secondary-color: #161616;
-  --secondary-color--darker: #131313;
-  --tertiary-color: #f7f7f7;
-  --quaternary-color: #777;
+  --text-background: #252525;
+  --text-color: #b5b5b5;
 
-  --font-size--base: 11px;
-  --font-size--small: 13px;
-  --font-size--medium: 18px;
-  --font-size--normal: 24px;
-  --font-size--large: 32px;
-}
+  --font-size--base: 16px;
+  --font-size--step: 9px;
 
-@media (--media-width--small) {
-  :root {
-    --font-size--base: var(--font-size--small);
-  }
-}
-
-@media (--media-width--medium) {
-  :root {
-    --font-size--base: var(--font-size--medium);
-  }
-}
-
-@media (--media-width--normal) {
-  :root {
-    --font-size--base: var(--font-size--normal);
-  }
-}
-
-@media (--media-width--large) {
-  :root {
-    --font-size--base: var(--font-size--large);
-  }
-}
-
-/*
-* Media Queries
-*/
-@custom-media --media-width--small (width >= 400px);
-@custom-media --media-height--small (height >= 500px);
-
-@custom-media --media-width--medium (width >= 480px);
-@custom-media --media-height--medium (height >= 600px);
-
-@custom-media --media-width--normal (width >= 900px);
-@custom-media --media-height--normal (height >= 700px);
-
-@custom-media --media-width--large (width >= 1200px);
-@custom-media --media-height--large (height >= 800px);
-
-/*
-* Fonts
-*/
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'),
-    url('../fonts/source-sans-pro-v13-latin-regular.woff2') format('woff2'),
-    url('../fonts/source-sans-pro-v13-latin-regular.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 600;
-  src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'),
-    url('../fonts/source-sans-pro-v13-latin-600.woff2') format('woff2'),
-    url('../fonts/source-sans-pro-v13-latin-600.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 900;
-  src: local('Source Sans Pro Black'), local('SourceSansPro-Black'),
-    url('../fonts/source-sans-pro-v13-latin-900.woff2') format('woff2'),
-    url('../fonts/source-sans-pro-v13-latin-900.woff') format('woff');
-}
-
-/*
-* Animations
-*/
-@keyframes rainbow {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 25%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/*
-* Global Classes
-*/
-.emoji {
-  display: inline-block;
-  font-style: normal;
-  text-shadow: none;
-
-  &--large {
-    font-size: 1.25em;
-  }
-}
-
-.rainbow {
-  animation: rainbow 7s ease-in-out infinite;
-  background-image: repeating-linear-gradient(
-    45deg,
-    white,
-    violet,
-    cyan,
-    green,
-    yellow,
-    orange,
-    red,
-    violet,
-    white
+  --font-size--tiny: calc(var(--font-size--base));
+  --font-size--small: calc(var(--font-size--base) + var(--font-size--step) * 2);
+  --font-size--normal: calc(
+    var(--font-size--small) + var(--font-size--step) * 3
   );
-  background-size: 800% 800%;
-
-  &--border {
-    background-clip: border-box;
-  }
-
-  &--text {
-    background-clip: text;
-    color: transparent;
-  }
+  --font-size--medium: calc(
+    var(--font-size--normal) + var(--font-size--step) * 4
+  );
+  --font-size--large: calc(
+    var(--font-size--medium) + var(--font-size--step) * 5
+  );
+  --font-size--larger: calc(
+    var(--font-size--large) + var(--font-size--step) * 6
+  );
+  --font-size--largerst: calc(
+    var(--font-size--large) + var(--font-size--step) * 7
+  );
 }
 
-/* from https://css-tricks.com/a-complete-guide-to-links-and-buttons/ */
-.visually-hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
+html {
+  font-size: var(--font-size--largest);
 }
 
-.pixelart {
-  image-rendering: optimizeSpeed;
-
-  @media (--media-width--small) {
-    image-rendering: pixelated;
-  }
-}
-
-/*
-* Page Styling
-*/
 body {
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: var(--font-size--base);
-  /* text-shadow: 0 0.1rem 0.25rem var(--secondary-color--darker); */
-}
-
-.page {
-  display: grid;
-  grid-template-areas:
-    'header'
-    'footer';
-  min-height: inherit;
-}
-
-.header {
-  grid-area: header;
-  align-self: end;
-  cursor: default;
-  font-size: var(--font-size--small);
-
-  display: grid;
-  grid-template-areas:
-    'name description'
-    'profiles';
-  background: red;
-
-  @media (--media-width--large) {
-    align-self: center;
-    justify-self: center;
-  }
-}
-
-.header__title {
-  grid-area: 'name';
-  letter-spacing: -0.04em;
-  line-height: 1;
-  margin: 1rem auto;
-  padding: 0 1rem;
-  text-align: right;
-
-  h1 {
-    font-size: var(--font-size--small);
-  }
-
-  h2 {
-    color: var(--primary-color);
-    letter-spacing: -0.03em;
-    padding-left: 0.5em;
-  }
-}
-
-.header__description {
-  grid-area: 'description';
-
-  display: grid;
-  grid-template-columns: auto auto;
-  line-height: 1.25em;
-
-  img {
-    box-shadow: -0.75em 0 0 -0.5em var(--primary-color);
-    border-right: 0.5em solid var(--primary-color);
-
-    display: block;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  figcaption {
-    align-self: center;
-    font-size: 1.25em;
-    padding: 1rem 0.25rem 1.25rem;
-    text-align: center;
-
-    .rainbow {
-      font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
-      font-weight: bold;
-      letter-spacing: 0.1em;
-      text-align: center;
-      line-height: 2;
-    }
-  }
-}
-
-.header__navigation {
-  grid-area: 'profiles';
-
-  display: block;
-  background: blue;
-  line-height: 2em;
-  margin: 1em auto 0;
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  li {
-    display: inline-block;
-  }
-
-  a {
-    color: var(--text-color);
-    text-decoration: none;
-
-    &:before,
-    &:after {
-      color: var(--text-color--primary);
-      transition: 0.3s color ease-in-out;
-    }
-
-    &:before {
-      content: '[';
-      margin-right: 0.25em;
-    }
-
-    &:after {
-      content: ']';
-      margin-left: 0.25em;
-    }
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: var(--text-color--primary);
-
-      &:before,
-      &:after {
-        color: var(--text-color);
-      }
-    }
-  }
-}
-
-.footer {
-  align-self: end;
-  font-size: var(--font-size--small);
-  color: var(--quaternary-color);
-  grid-area: footer;
-
-  text-align: center;
-  cursor: default;
+  background: var(--text-background);
+  color: var(--text-color);
+  font-family: "Source Sans Pro", "Tahoma", "Trebuchet MS", sans-serif;
+  font-weight: 900;
   text-transform: lowercase;
-  padding: 0.7rem;
-  word-spacing: -0.1rem;
 
-  @media (--media-width--small) {
-    font-size: var(--font-size--medium);
-  }
-
-  img {
-    width: 7em;
-    filter: contrast(0);
-    margin: 0 auto 1.6em;
-  }
-
-  small,
-  span {
-    display: inline-block;
+  & > p {
+    display: hidden;
   }
 }
