@@ -1,8 +1,7 @@
 "use strict"
 
-require("browser-sync").create("gulp")
-
 const { require_tasks } = require("./modules")
+const bs = require("browser-sync").create()
 
 module.exports = require_tasks([
   "assets/fonts",
@@ -10,7 +9,6 @@ module.exports = require_tasks([
   "content/templates",
   "styles",
   "build",
-  "clean",
   "default",
   "serve",
 ])

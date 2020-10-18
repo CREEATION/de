@@ -7,15 +7,11 @@ const {
 
 module.exports = finalize_task(
   (cb) => {
-    const packagejson = require(root_dir("/package.json"))
-
     const { src, dest } = require("gulp")
     const sourcemaps = require("gulp-sourcemaps")
     const preprocessor = require("gulp-postcss")
     const preprocessor_config = require(root_dir("/postcss.config.js"))
     const minifier = require("gulp-csso")
-    const minifier_config = packagejson.config.csso
-    const bs = require("browser-sync")
 
     require("pump")(
       [
@@ -24,10 +20,12 @@ module.exports = finalize_task(
         }),
         sourcemaps.init(),
         preprocessor(preprocessor_config),
-        minifier(minifier_config),
+        minifier({
+          restructure: false,
+        }),
         sourcemaps.write("sourcemaps"),
         dest("dist/css"),
-        bs.get("gulp").stream(),
+        require("browser-sync").stream({ match: "**/*.css" }),
       ],
       cb
     )
@@ -43,7 +41,7 @@ module.exports = finalize_task(
         patterns: ["dist/css/"],
       },
       watch: {
-        patterns: ["src/**/*.css"],
+        patterns: ["src/styles/**/*"],
       },
     },
   }

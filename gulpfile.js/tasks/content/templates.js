@@ -13,8 +13,6 @@ module.exports = finalize_task(
     const data = require("gulp-data")
     const template_engine = require("gulp-pug")
     const formatter = require("gulp-prettier")
-    const formatter_config = require(root_dir("/.prettierrc"))
-    const bs = require("browser-sync")
 
     require("pump")(
       [
@@ -26,10 +24,10 @@ module.exports = finalize_task(
             },
           }
         }),
-        template_engine(packagejson.config.pug),
-        formatter(formatter_config),
+        template_engine(),
+        formatter(),
         dest("dist"),
-        bs.get("gulp").stream(),
+        require("browser-sync").stream(),
       ],
       cb
     )

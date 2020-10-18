@@ -15,8 +15,8 @@ const log = require("fancy-log")
  * @param {Object} options globby/del options
  * @param {Function} cb
  */
-module.exports = function del_cb(patterns = "", options = { dot: true }, cb) {
-  ;(async () => {
+module.exports = async function del_cb(patterns = "", options = { dot: true }) {
+  return new Promise(async (resolve) => {
     let log_message = c.green("Nothing found to delete")
     let log_patterns = `"${patterns}"`
 
@@ -36,8 +36,6 @@ module.exports = function del_cb(patterns = "", options = { dot: true }, cb) {
       c.gray(`Patterns: [${log_patterns}]`)
     )
 
-    if (cb && typeof cb === "function") {
-      cb()
-    }
-  })()
+    resolve()
+  })
 }

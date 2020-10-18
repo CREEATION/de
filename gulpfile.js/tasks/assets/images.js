@@ -3,18 +3,12 @@
 const {
   finalize_task,
   parse_imagemin_plugins,
-  root_dir,
 } = require(`${process.cwd()}/gulpfile.js/modules`)
 
 module.exports = finalize_task(
   (cb) => {
-    const packagejson = require(root_dir("/package.json"))
-
     const { src, dest, lastRun } = require("gulp")
     const imagemin = require("gulp-imagemin")
-    const imagemin_plugins = packagejson.config.imagemin.plugins
-    const imagemin_options = packagejson.config.imagemin.options
-    const bs = require("browser-sync")
 
     require("pump")(
       [
@@ -23,11 +17,37 @@ module.exports = finalize_task(
           since: lastRun(module.exports),
         }),
         imagemin(
-          parse_imagemin_plugins(imagemin, imagemin_plugins),
-          imagemin_options
+          parse_imagemin_plugins(imagemin, {
+            gifsicle: {
+              plugin_enabled: true,
+              interlaced: true,
+              optimizationLevel: 3,
+            },
+            mozjpeg: {
+              plugin_enabled: true,
+              quality: 77,
+            },
+            optipng: {
+              plugin_enabled: true,
+              interlaced: true,
+              optimizationLevel: 7,
+            },
+            svgo: {
+              plugin_enabled: true,
+              sortAttrs: true,
+              removeOffCanvasPaths: true,
+              removeScriptElement: true,
+              removeStyleElement: true,
+              reusePaths: true,
+            },
+          }),
+          // imagemin options
+          {
+            verbose: false,
+          }
         ),
         dest("dist/assets/images"),
-        bs.get("gulp").stream(),
+        require("browser-sync").stream(),
       ],
       cb
     )

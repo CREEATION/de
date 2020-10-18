@@ -1,6 +1,7 @@
 "use strict"
 
-const del_cb = require("./del-cb")
+const { watch } = require("gulp")
+const clean = require("./clean")
 
 function register_task(task, config = {}) {
   if (
@@ -31,12 +32,15 @@ module.exports = function finalize_task(task, config = {}) {
       config.options.clean.hasOwnProperty("patterns")
     ) {
       task.clean = register_task(
-        (cb) => {
-          del_cb(config.options.clean.patterns, cb)
+        async () => {
+          await clean(config.options.clean.patterns)
         },
         {
           metadata: {
-            displayName: `clean:${task.displayName}`,
+            displayName:
+              task.displayName === "build"
+                ? "clean"
+                : `clean:${task.displayName}`,
             description: `purges "${task.displayName}" task output`,
           },
         }
@@ -49,7 +53,7 @@ module.exports = function finalize_task(task, config = {}) {
     ) {
       task.watch = register_task(
         () => {
-          require("gulp").watch(config.options.watch.patterns, task)
+          watch(config.options.watch.patterns, task)
         },
         {
           metadata: {

@@ -19,7 +19,6 @@ module.exports = finalize_task(
     },
     options: {
       clean: {
-        default: true,
         patterns: ["dist/**/*", "!dist", "!dist/.gitkeep"],
       },
     },
