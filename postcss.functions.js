@@ -1,5 +1,7 @@
 // helpers
-const getUnit = (a) => [...a].filter((num) => !isFinite(num)).join("")
+function getUnit(a) {
+  return [...a].filter((num) => !isFinite(num)).join("")
+}
 
 exports.mod = function mod(x, y, preserveUnits = false) {
   const result = parseInt(x, 10) % parseInt(y, 10)

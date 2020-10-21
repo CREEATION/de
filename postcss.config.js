@@ -3,6 +3,9 @@ module.exports = {
     // https://www.npmjs.com/package/postcss-import
     require("postcss-import")(),
 
+    // https://github.com/seaneking/postcss-hexrgba
+    require("postcss-hexrgba")(),
+
     // https://www.npmjs.com/package/postcss-preset-env
     require("postcss-preset-env")({
       stage: 1,
@@ -14,7 +17,7 @@ module.exports = {
 
     // https://www.npmjs.com/package/postcss-functions
     require("postcss-functions")({
-      functions: require("./src/styles/functions"),
+      functions: require("./postcss.functions"),
     }),
 
     // https://www.npmjs.com/package/postcss-hidden
