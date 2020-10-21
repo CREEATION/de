@@ -2,8 +2,6 @@
 
 const { finalize_task } = require(`${process.cwd()}/gulpfile.js/modules`)
 
-const { parallel, series } = require("gulp")
-
 module.exports = finalize_task(
   () => {
     require("browser-sync").init({
