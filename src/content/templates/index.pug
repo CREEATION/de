@@ -1,18 +1,17 @@
 //- layout
-extends templates/layout.base.pug
+extends layout/base.pug
 
 //- modify existing template data and options or add your own here
 prepend page-template
   -
     //- show defaults:
-    //- console.log(template_data())
-    //- console.log(template_options())
+    //- console.log(helpers.data(template), helpers.options(template))
 
-    template_data({
+    helpers.data(template, {
       page_title: "UX-driven Web Development by Thomas Creeten | CREEATION.de",
     })
 
-    template_options({
+    helpers.options(template, {
       screenreader_intro: true,
     })
 
@@ -27,12 +26,18 @@ block screenreader-intro
   p You might just wish to skip my blabber, in which case you'd simply press Tab and go explore yourself. 🕵️‍♀️
   p I've crafted this website as sort of a text adventure, so you'll be able to navigate everything with a keyboard.
   p(aria-label="For people looking at the source code")
-    | The above is probably not what you were looking for. Nevertheless, I'm currently available for hire so feel free to continue lurking around. 👀
+    | The above is probably not what you were looking for. Nevertheless, I’m currently available for hire so feel free to continue lurking around. 👀
 
 block page-header
-  div: img(src="assets/images/thomas_creeten.png")
-  h2 HEY,
-  p.font-size--large my name is THOMAS and i‘m here to eliminate* bad user experience.
+  img.bordered(src="assets/images/thomas_creeten.png")
+  h1
+    mark.highlight Hey,
+    br
+    | my name is #[mark Thomas] and i’m here to
+    |
+    mark.danger #[a(href="#") eliminate]#[mark.warning *]
+    |
+    | bad #[a(href="#") user experience].
 
 block page-footer
   img(src="assets/images/creeation-logo.svg", alt="CREEATION Logo", title="CREEATION")

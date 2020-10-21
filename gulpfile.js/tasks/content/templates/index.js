@@ -12,11 +12,14 @@ module.exports = finalize_task(
     const { src, dest } = require("gulp")
     const data = require("gulp-data")
     const template_engine = require("gulp-pug")
+    const template_helpers = require(root_dir(
+      "/gulpfile.js/tasks/content/templates/pug-helpers"
+    ))
     const formatter = require("gulp-prettier")
 
     require("pump")(
       [
-        src("src/content/*.pug"),
+        src("src/content/templates/*.pug"),
         data(() => {
           return {
             data: {
@@ -24,7 +27,14 @@ module.exports = finalize_task(
             },
           }
         }),
-        template_engine(),
+        template_engine({
+          locals: {
+            helpers: {
+              data: template_helpers.data,
+              options: template_helpers.options,
+            },
+          },
+        }),
         formatter(),
         dest("dist"),
         require("browser-sync").stream(),

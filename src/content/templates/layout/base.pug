@@ -9,25 +9,6 @@
     }
   }
 
-  // template functions
-  function _template_modifier(obj, key) {
-    if (typeof obj === "string") {
-      return template[key][obj]
-    }
-
-    template[key] = Object.assign({}, template[key], obj)
-
-    return template[key]
-  }
-
-  function template_data(obj) {
-    return _template_modifier(obj, "data")
-  }
-
-  function template_options(obj) {
-    return _template_modifier(obj, "options")
-  }
-
 block page-template
   //- template architecture
   doctype html
@@ -38,7 +19,7 @@ block page-template
       meta(http-equiv="X-UA-Compatible", content="ie=edge")
 
       block page-title
-        title= template_data("page_title")
+        title= helpers.data(template, "page_title")
 
       block page-css
         block page-specific-css
@@ -47,17 +28,17 @@ block page-template
       block page-preload-scripts
 
     body
-      if template_options("screenreader_intro")
+      if helpers.options(template, "screenreader_intro")
         block screenreader-intro
           p This text should be hidden with CSS so it won't show visually, but screenreaders read it out loud.
 
       header.page-header
         block page-header
-          h1= template_data("page_title")
+          h1= helpers.data(template, "page_title")
 
       footer.page-footer
         block page-footer
         small &copy; #{new Date().getFullYear()}
-        span #{data.info.homepage} / #{data.info.author.name}
+        span #{data.info.displayName} / #{data.info.author.name}
 
       block page-ready-scripts
