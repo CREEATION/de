@@ -1,7 +1,6 @@
 "use strict"
 
 const { require_tasks } = require("./modules")
-const bs = require("browser-sync").create()
 
 module.exports = require_tasks([
   "assets/fonts",
