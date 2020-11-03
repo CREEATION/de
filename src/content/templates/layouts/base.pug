@@ -29,12 +29,17 @@ block page-template
 
     body
       if helpers.options(template, "screenreader_intro")
-        block screenreader-intro
-          p This text should be hidden with CSS so it won't show visually, but screenreaders read it out loud.
+        .screenreader-only
+          block screenreader-intro
+            p This text should be hidden with CSS so it won't show visually, but screenreaders read it out loud.
 
       header.page-header
         block page-header
           h1= helpers.data(template, "page_title")
+
+      main.page-main
+        block page-main
+          p Page Content would go here if there's any.
 
       footer.page-footer
         block page-footer
