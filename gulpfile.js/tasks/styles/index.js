@@ -15,7 +15,7 @@ module.exports = finalize_task(
 
     require("pump")(
       [
-        src("src/styles/**/*.css", {
+        src("src/styles/*.css", {
           dot: true,
         }),
         sourcemaps.init(),
