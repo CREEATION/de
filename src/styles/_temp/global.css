@@ -1,0 +1,45 @@
+:root {
+  --background: #252525;
+
+  --color: #b5b5b5;
+  --color--danger: #fa6161;
+  --color--warning: #c4cc25;
+  --color--info: #77cc25;
+  --color--highlight: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* html {
+  font-size: var(--font-size--tiny);
+  line-height: var(--font-size--larger);
+}
+
+body {
+  background: var(--text-background);
+  color: var(--text-color);
+  font-family: "Source Sans Pro", "Tahoma", "Trebuchet MS", sans-serif;
+  font-weight: 900;
+  text-transform: lowercase;
+  margin: 0;
+}
+
+mark {
+  text-shadow: initial;
+  white-space: nowrap;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  text-shadow: 0.2rem 0.2rem 0.25rem rgba(#000, 0.25);
+}
+
+mark {
+} */

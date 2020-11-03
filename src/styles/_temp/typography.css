@@ -1,0 +1,66 @@
+:root {
+  --font-family: "Source Sans Pro", "Tahoma", "Trebuchet MS", sans-serif;
+
+  --font-size_base: 16px;
+  --font-size_step: 9px;
+
+  --font-size--tiny: var(--font-size_base);
+  --font-size--small: calc(var(--font-size_base) + var(--font-size_step));
+  --font-size--normal: calc(
+    var(--font-size_base) + (var(--font-size_step) * 2)
+  );
+  --font-size--medium: calc(
+    var(--font-size_base) + (var(--font-size_step) * 3)
+  );
+  --font-size--large: calc(var(--font-size_base) + (var(--font-size_step) * 4));
+  --font-size--larger: calc(
+    var(--font-size_base) + (var(--font-size_step) * 5)
+  );
+  --font-size--largest: calc(
+    var(--font-size_base) + (var(--font-size_step) * 6)
+  );
+}
+
+.font-size--tiny {
+  font-size: var(--font-size--tiny);
+}
+
+.font-size--small {
+  font-size: var(--font-size--small);
+}
+
+.font-size--normal {
+  font-size: var(--font-size--normal);
+}
+
+.font-size--medium {
+  font-size: var(--font-size--medium);
+}
+
+.font-size--large {
+  font-size: var(--font-size--large);
+}
+
+.font-size--larger {
+  font-size: var(--font-size--larger);
+}
+
+.font-size--largest {
+  font-size: var(--font-size--largest);
+}
+
+h1,
+h2 {
+  font-size: var(--font-size--medium);
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size--normal);
+}
+
+p {
+  font-size: var(--font-size--normal);
+}
