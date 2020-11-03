@@ -6,6 +6,14 @@ module.exports = {
     // https://github.com/seaneking/postcss-hexrgba
     require("postcss-hexrgba")(),
 
+    // https://www.npmjs.com/package/postcss-functions
+    require("postcss-functions")({
+      functions: require("./postcss.functions"),
+    }),
+
+    // https://www.npmjs.com/package/postcss-hidden
+    require("postcss-hidden")(),
+
     // https://www.npmjs.com/package/postcss-preset-env
     require("postcss-preset-env")({
       stage: 1,
@@ -14,14 +22,6 @@ module.exports = {
         "custom-properties": { preserve: false },
       },
     }),
-
-    // https://www.npmjs.com/package/postcss-functions
-    require("postcss-functions")({
-      functions: require("./postcss.functions"),
-    }),
-
-    // https://www.npmjs.com/package/postcss-hidden
-    require("postcss-hidden")(),
 
     // https://www.npmjs.com/package/postcss-calc
     require("postcss-calc")({ warnWhenCannotResolve: true }),
