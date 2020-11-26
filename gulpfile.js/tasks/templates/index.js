@@ -1,25 +1,23 @@
 "use strict"
 
 const {
-  finalize_task,
-  root_dir,
-} = require(`${process.cwd()}/gulpfile.js/modules`)
+  task_finalize,
+  utils_root_dir,
+  utils_template_modifier,
+} = require(`${process.cwd()}/lib`)
 
-module.exports = finalize_task(
+module.exports = task_finalize(
   (cb) => {
-    const packagejson = require(root_dir("/package.json"))
+    const packagejson = require(utils_root_dir("/package.json"))
 
     const { src, dest } = require("gulp")
     const data = require("gulp-data")
     const template_engine = require("gulp-pug")
-    const template_helpers = require(root_dir(
-      "/gulpfile.js/tasks/content/templates/pug-helpers"
-    ))
     const formatter = require("gulp-prettier")
 
     require("pump")(
       [
-        src("src/content/templates/*.pug"),
+        src("src/www/**/*.pug"),
         data(() => {
           return {
             data: {
@@ -30,8 +28,12 @@ module.exports = finalize_task(
         template_engine({
           locals: {
             helpers: {
-              data: template_helpers.data,
-              options: template_helpers.options,
+              data: (template, obj) => {
+                return utils_template_modifier(template, obj, "data")
+              },
+              options: (template, obj) => {
+                return utils_template_modifier(template, obj, "options")
+              },
             },
           },
         }),
@@ -50,7 +52,7 @@ module.exports = finalize_task(
     },
     options: {
       clean: {
-        patterns: ["dist/*.html"],
+        patterns: ["dist/**/*.html", "!dist/assets/"],
       },
       watch: {
         patterns: ["src/**/*.pug", "package.json"],

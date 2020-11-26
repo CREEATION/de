@@ -1,8 +1,8 @@
 "use strict"
 
-const { finalize_task } = require(`${process.cwd()}/gulpfile.js/modules`)
+const { task_finalize } = require(`${process.cwd()}/lib`)
 
-module.exports = finalize_task(
+module.exports = task_finalize(
   (cb) => {
     const { src, dest } = require("gulp")
 

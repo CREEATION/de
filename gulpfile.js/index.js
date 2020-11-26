@@ -1,11 +1,11 @@
 "use strict"
 
-const { require_tasks } = require("./modules")
+const { tasks_require } = require("../lib")
 
-module.exports = require_tasks([
+module.exports = tasks_require([
   "assets/fonts",
   "assets/images",
-  "content/templates",
+  "templates",
   "styles",
   "build",
   "default",

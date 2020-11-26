@@ -1,16 +1,13 @@
 "use strict"
 
-const {
-  finalize_task,
-  root_dir,
-} = require(`${process.cwd()}/gulpfile.js/modules`)
+const { task_finalize, utils_root_dir } = require(`${process.cwd()}/lib`)
 
-module.exports = finalize_task(
+module.exports = task_finalize(
   (cb) => {
     const { src, dest } = require("gulp")
     const sourcemaps = require("gulp-sourcemaps")
     const preprocessor = require("gulp-postcss")
-    const preprocessor_config = require(root_dir("/postcss.config.js"))
+    const preprocessor_config = require(utils_root_dir("/postcss.config.js"))
     const minifier = require("gulp-csso")
 
     require("pump")(
@@ -21,10 +18,10 @@ module.exports = finalize_task(
         sourcemaps.init(),
         preprocessor(preprocessor_config),
         minifier({
-          restructure: false,
+          restructure: true,
         }),
         sourcemaps.write("sourcemaps"),
-        dest("dist/css"),
+        dest("dist/assets/css"),
         require("browser-sync").stream({ match: "**/*.css" }),
       ],
       cb
@@ -38,10 +35,10 @@ module.exports = finalize_task(
     },
     options: {
       clean: {
-        patterns: ["dist/css/"],
+        patterns: ["dist/assets/css/"],
       },
       watch: {
-        patterns: ["src/styles/**/*"],
+        patterns: ["src/styles/**/*", "src/**/*.css"],
       },
     },
   }

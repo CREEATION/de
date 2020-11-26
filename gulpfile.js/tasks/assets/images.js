@@ -1,11 +1,11 @@
 "use strict"
 
 const {
-  finalize_task,
-  parse_imagemin_plugins,
-} = require(`${process.cwd()}/gulpfile.js/modules`)
+  task_finalize,
+  utils_parse_imagemin_plugins,
+} = require(`${process.cwd()}/lib`)
 
-module.exports = finalize_task(
+module.exports = task_finalize(
   (cb) => {
     const { src, dest, lastRun } = require("gulp")
     const imagemin = require("gulp-imagemin")
@@ -17,7 +17,7 @@ module.exports = finalize_task(
           since: lastRun(module.exports),
         }),
         imagemin(
-          parse_imagemin_plugins(imagemin, {
+          utils_parse_imagemin_plugins(imagemin, {
             gifsicle: {
               plugin_enabled: true,
               interlaced: true,

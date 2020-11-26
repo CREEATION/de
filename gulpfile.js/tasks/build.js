@@ -1,14 +1,13 @@
 "use strict"
 
-const { finalize_task } = require(`${process.cwd()}/gulpfile.js/modules`)
-
 const { parallel } = require("gulp")
+const { task_finalize } = require(`${process.cwd()}/lib`)
 
-module.exports = finalize_task(
+module.exports = task_finalize(
   parallel(
     require("./assets/fonts"),
     require("./assets/images"),
-    require("./content/templates"),
+    require("./templates"),
     require("./styles")
   ),
   {
