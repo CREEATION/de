@@ -1,15 +1,16 @@
 @charset "utf-8";
 
 /* bits */
-@import "./bits/reset.css";
-@import "./bits/screenreader.css";
 @import "./bits/box-display.css";
 @import "./bits/colors.css";
 @import "./bits/filters.css";
 @import "./bits/fonts.css";
-@import "./bits/text.css";
 @import "./bits/links.css";
 @import "./bits/paragraphs.css";
+@import "./bits/reset.css";
+@import "./bits/screenreader.css";
+@import "./bits/tables.css";
+@import "./bits/text.css";
 
 /* modules */
 /* @import "./modules/???.css"; */

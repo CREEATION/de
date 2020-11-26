@@ -1,0 +1,23 @@
+table {
+  border: 5px solid color-mod(var(--color-gray) alpha(0.15));
+  width: 100%;
+}
+
+th {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid;
+}
+
+td {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid color-mod(var(--color-gray) alpha(0.25));
+
+  &:last-child {
+    background: var(--color-gray);
+    color: var(--color-black);
+    font-size: 1rem;
+    vertical-align: top;
+    padding: 0 0.5rem;
+    min-width: 5rem;
+  }
+}
