@@ -12,6 +12,7 @@
   "devDependencies": {
     "browser-sync": "^2.26.12",
     "del": "^6.0.0",
+    "flat": "^5.0.2",
     "globby": "^11.0.1",
     "gulp": "^4.0.2",
     "gulp-csso": "^4.0.1",
@@ -30,6 +31,7 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-reporter": "^7.0.1",
     "pump": "^3.0.0",
+    "require-folder": "^1.0.0",
     "url": "^0.11.0"
   }
 }
