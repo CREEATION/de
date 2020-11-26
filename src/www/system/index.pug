@@ -17,13 +17,10 @@ prepend page-template
 
 //- layout blocks
 block page-main
-  section: +example-elements
-  //- section: +example-modules
-  //- section: +example-sections
-
-  h2 Modules
-
-  h2 Sections
+  section: +overview-bits
+  section: +overview-elements(false)
+  section: +overview-modules(false)
+  section: +overview-sections(false)
 
 block page-footer
-  img(src="assets/images/creeation-logo.svg", alt="CREEATION Logo", title="CREEATION")
+  img(src="/assets/images/creeation-logo.svg", alt="CREEATION Logo", title="CREEATION")
