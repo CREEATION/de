@@ -1,0 +1,10 @@
+//- elements
+include link
+
+//- elements overview
+mixin example-elements
+  section
+    header: h2 Link Elements
+    article: +example-elements-link("inline")
+    article: +example-elements-link("inline-block")
+    article: +example-elements-link("block")

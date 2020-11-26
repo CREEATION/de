@@ -1,0 +1,81 @@
+mixin link(is="inline")
+  -
+    const type = is
+    let tabindex = !attributes.href ? undefined : attributes.tabindex|"0"
+
+    // only allow valid link types
+    switch (type) {
+      case "inline": break;
+      case "block": break;
+      case "inline-block": break;
+      default: throw `error: link type "${type}" doesn't exist!`;
+    }
+
+  a(tabindex=tabindex, class=`link link--${type}`)&attributes(attributes)
+    if block
+      block
+
+//- examples overview
+mixin example-elements-link(is="inline")
+  -
+    const type = "Link"
+    let name
+
+    switch (is) {
+      case "inline":
+        name = "Inline Link";
+        break;
+      case "block":
+        name = "Block Link";
+        break;
+      case "inline-block":
+        name = "Inline-Block Link";
+        break;
+      default:
+        throw `error: link type "${is}" doesn't exist!`;
+    }
+
+    const element = {
+      name
+    }
+
+    const examples = [
+      {
+        name: `Internal`,
+        href: "/index.html",
+      },
+      {
+        name: `External (HTTPS)`,
+        href: "https://duckduckgo.com",
+      },
+      {
+        name: `External (HTTP)`,
+        href: "http://duckduckgo.com",
+        invalid: true
+      },
+      {
+        name: `Same-Page`,
+        href: "#0",
+        notes: `anchors`
+      },
+      {
+        name: `Invalid/Undefined`,
+        invalid: true
+      }
+    ]
+
+  h3= name
+  table
+    thead
+      tr
+        th: code valid
+        th: code types
+        th: code notes
+    tbody
+      each example in examples
+        tr
+          td= example.invalid ? `` : `✅`
+          td: +link(is)(href=example.href)= example.name
+          td
+            if example.notes
+              small: code= example.notes
