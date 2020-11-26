@@ -3,8 +3,8 @@ module.exports = {
     // https://www.npmjs.com/package/postcss-import
     require("postcss-import")(),
 
-    // https://github.com/seaneking/postcss-hexrgba
-    require("postcss-hexrgba")(),
+    // https://github.com/jonathantneal/postcss-color-mod-function
+    require("postcss-color-mod-function")(),
 
     // https://www.npmjs.com/package/postcss-functions
     require("postcss-functions")({
