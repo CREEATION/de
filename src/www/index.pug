@@ -1,0 +1,40 @@
+//- layout
+extends ../templates/layouts/base
+
+//- modify existing template data and options or add your own here
+prepend page-template
+  -
+    //- show defaults:
+    //- console.log(helpers.data(template), helpers.options(template))
+
+    helpers.data(template, {
+      page_title: "UX-driven Web Development by Thomas Creeten | CREEATION.de",
+    })
+
+    helpers.options(template, {
+      screenreader_intro: true,
+    })
+
+//- layout blocks
+block screenreader-intro
+  p.
+    Hello! My name is Thomas Creeten and I welcome you to my website! 🐢
+    If you’re hearing this, you’re probably unable to see what I’d love you to be able to see.
+    You might just wish to skip my blabber, in which case you’d simply press Tab and go explore yourself. 🕵️‍♀️
+    I’ve crafted this website as sort of a text adventure, so you’ll be able to navigate everything without a mouse.
+
+  p(aria-label="For people looking at the source code")
+    | The above is probably not what you were looking for. Nevertheless, I’m currently available for hire so feel free to continue lurking around. 👀
+
+block page-main
+  img(src="assets/images/thomas_creeten.png", class="bordered filter:wash")
+  h1
+    | #[span(class="text:yellow") Hello] fellow human,
+    br
+    | my name is #[span(class="text:green filter:wash") Thomas] and #[span(class="text:blue filter:wash") I write code].
+
+  p Over the years I’ve developed a focus on User Interfaces and Interactions, trying to eliminate bad #[a(href="#", class="text:stamp") user experience] along the way.
+  p Follow me.
+
+block page-footer
+  img(src="assets/images/creeation-logo.svg", alt="CREEATION Logo", title="CREEATION")
