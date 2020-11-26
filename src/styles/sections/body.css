@@ -1,0 +1,9 @@
+body {
+  font-family: "Source Sans Pro", "Tahoma", "Trebuchet MS", sans-serif;
+  font-weight: 900;
+  font-size: 25px;
+  text-transform: lowercase;
+
+  background-color: var(--color-white);
+  color: var(--color-black);
+}

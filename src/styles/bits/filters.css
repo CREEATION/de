@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+/* css filters */
+.filter {
+  &\:vibrant {
+    filter: contrast(1.6);
+  }
+
+  &\:wash {
+    filter: contrast(0.7);
+  }
+
+  &\:invert {
+    filter: invert();
+  }
+
+  &\:reset,
+  * {
+    filter: none;
+  }
+}

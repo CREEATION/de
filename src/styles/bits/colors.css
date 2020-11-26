@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+:root {
+  --color-black: #252525;
+  --color-gray: #b5b5b5;
+  --color-grey: var(--color-gray);
+  --color-white: #ffffff;
+  --color-red: #fa6161;
+  --color-green: #77cc25;
+  --color-blue: #25ddcc;
+  --color-yellow: #dce225;
+
+  --color-brand_primary: var(--color-green);
+  --color-brand_secondary: var(--color-white);
+}

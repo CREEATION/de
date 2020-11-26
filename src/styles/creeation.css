@@ -1,97 +1,21 @@
-@import "../assets/fonts/source_sans_pro/source_sans_pro.css";
-@import "typography.css";
+@charset "utf-8";
 
-:root {
-  --text-background: #252525;
-  --text-color: #b5b5b5;
+/* bits */
+@import "./bits/reset.css";
+@import "./bits/screenreader.css";
+@import "./bits/box-display.css";
+@import "./bits/colors.css";
+@import "./bits/filters.css";
+@import "./bits/fonts.css";
+@import "./bits/text.css";
+@import "./bits/links.css";
+@import "./bits/paragraphs.css";
 
-  --link-color: #25ddcc;
-  --link-decoration-style: dotted;
+/* modules */
+/* @import "./modules/???.css"; */
 
-  --color--danger: #fa6161;
-  --color--warning: #c4cc25;
-  --color--info: #77cc25;
-  --color--highlight: #fff;
-}
+/* sections */
+@import "./sections/body.css";
 
-html {
-  font-size: var(--font-size--tiny);
-  line-height: var(--font-size--larger);
-}
-
-body {
-  background: var(--text-background);
-  color: var(--text-color);
-  font-family: "Source Sans Pro", "Tahoma", "Trebuchet MS", sans-serif;
-  font-weight: 900;
-  text-transform: lowercase;
-  margin: 0;
-
-  & > p {
-    display: hidden;
-  }
-}
-
-.bordered {
-  border: 7px solid rgba(#77cc25, 0.2);
-  box-shadow: 0 0 0 2px #77cc25 inset;
-}
-
-.centered {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-}
-
-img {
-  image-rendering: pixelated;
-}
-
-a {
-  color: var(--link-color);
-  text-decoration-style: var(--link-decoration-style);
-  white-space: nowrap;
-
-  &:hover,
-  &:active,
-  &:focus {
-    text-decoration-style: unset;
-  }
-}
-
-mark {
-  color: var(--color--info);
-  background: transparent;
-  white-space: nowrap;
-
-  &.danger {
-    color: var(--color--danger);
-  }
-
-  &.warning {
-    color: var(--color--warning);
-  }
-
-  &.highlight {
-    color: var(--color--highlight);
-  }
-
-  & * {
-    color: inherit;
-  }
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  text-shadow: 0.2rem 0.2rem 0.25rem rgba(#000, 0.25);
-}
-
-a,
-mark {
-  text-shadow: initial;
-}
+/* themes */
+@import "./themes/dark_mode.css";

@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+a {
+  color: var(--color-brand_primary);
+  text-decoration: solid underline;
+  white-space: nowrap;
+  text-shadow: initial;
+  transition: color 0.124s ease-in-out;
+
+  /**
+  * states
+  */
+  &:visited,
+  &:hover {
+    text-decoration-style: dotted;
+  }
+
+  &:focus,
+  &:active {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+  }
+}
+
+/**
+* conditional styles
+*/
+a {
+  /* same-page link */
+  &[href^="#"] {
+    color: var(--color-yellow);
+  }
+
+  /* external link */
+  &[href*="://"]
+  {
+    color: var(--color-blue);
+    cursor: alias;
+  }
+
+  /* external http, invalid */
+  &[href^="http://"],
+  &:not([href]) {
+    color: var(--color-red);
+    text-decoration: var(--color-red) double line-through;
+    opacity: 0.5;
+    pointer-events: none;
+    /* cursor: not-allowed; */
+  }
+}
+
+/**
+* modifiers
+*/
+a {
+  &.inline-block,
+  &.block {
+    border-radius: 0.25em;
+    box-shadow: 0 0 0 0.025em inset;
+    text-align: center;
+    padding: 0.25em 0.5em;
+  }
+
+  &.text\:stamp {
+    /* same-page link */
+    &[href^="#"] {
+      background-color: var(--color-yellow);
+    }
+
+    /* external link */
+    &[href*="://"]
+    {
+      background-color: var(--color-blue);
+    }
+
+    /* external http, invalid */
+    &[href^="http://"],
+    &:not([href]) {
+      background-color: var(--color-red);
+    }
+  }
+}

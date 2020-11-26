@@ -1,0 +1,107 @@
+@charset "utf-8";
+
+.text {
+  &\:black {
+    color: var(--color-black);
+  }
+
+  &\:gray,
+  &\:grey {
+    color: var(--color-gray);
+  }
+
+  &\:white {
+    color: var(--color-white);
+  }
+
+  &\:red {
+    color: var(--color-red);
+  }
+
+  &\:green {
+    color: var(--color-green);
+  }
+
+  &\:blue {
+    color: var(--color-blue);
+  }
+
+  &\:yellow {
+    color: var(--color-yellow);
+  }
+}
+
+mark,
+.text\:stamp {
+  color: var(--color-white) !important;
+  mix-blend-mode: darken;
+}
+
+mark,
+.text\:stamp,
+.background {
+  background-color: var(--color-gray);
+}
+
+mark,
+.text\:stamp {
+  &.text\:black {
+    background-color: var(--color-black);
+  }
+
+  &.text\:white {
+    background-color: var(--color-white);
+  }
+
+  &.text\:gray,
+  &.text\:grey {
+    background-color: var(--color-gray);
+  }
+
+  &.text\:red {
+    background-color: var(--color-red);
+  }
+
+  &.text\:green {
+    background-color: var(--color-green);
+  }
+
+  &.text\:blue {
+    background-color: var(--color-blue);
+  }
+
+  &.text\:yellow {
+    background-color: var(--color-yellow);
+  }
+}
+
+.background {
+  &\:black {
+    background-color: var(--color-black);
+  }
+
+  &\:white {
+    background-color: var(--color-white);
+  }
+
+  &\:gray,
+  &\:grey {
+    background-color: var(--color-gray);
+  }
+
+  &\:red {
+    background-color: var(--color-red);
+  }
+
+  &\:green {
+    background-color: var(--color-green);
+  }
+
+  &\:blue {
+    background-color: var(--color-blue);
+  }
+
+  &\:yellow {
+    background-color: var(--color-yellow);
+  }
+}
