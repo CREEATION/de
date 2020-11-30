@@ -106,3 +106,51 @@ mark,
     background-color: var(--color-yellow);
   }
 }
+
+.cursor {
+  &\:alias {
+    cursor: alias;
+  }
+
+  &\:not-allowed {
+    cursor: not-allowed;
+  }
+}
+
+.opacity {
+  &\:half {
+    opacity: 0.5;
+  }
+}
+
+.decoration {
+  &\:double-line-through {
+    text-decoration: double line-through !important;
+  }
+
+  &\-style {
+    &\:double {
+      text-decoration-style: double !important;
+    }
+  }
+
+  &\-line {
+    &\:line-through {
+      text-decoration-line: line-through !important;
+    }
+  }
+}
+
+.prepend {
+  &\:unlocked {
+    &::before {
+      content: "🔓 ";
+    }
+  }
+
+  &\:person-golfing {
+    &::before {
+      content: "🏌️ ";
+    }
+  }
+}
