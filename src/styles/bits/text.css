@@ -2,37 +2,38 @@
 
 .text {
   &\:black {
-    color: var(--color-black);
+    color: var(--color-black) !important;
   }
 
   &\:gray,
   &\:grey {
-    color: var(--color-gray);
+    color: var(--color-gray) !important;
   }
 
   &\:white {
-    color: var(--color-white);
+    color: var(--color-white) !important;
   }
 
   &\:red {
-    color: var(--color-red);
+    color: var(--color-red) !important;
   }
 
   &\:green {
-    color: var(--color-green);
+    color: var(--color-green) !important;
   }
 
   &\:blue {
-    color: var(--color-blue);
+    color: var(--color-blue) !important;
   }
 
   &\:yellow {
-    color: var(--color-yellow);
+    color: var(--color-yellow) !important;
   }
 }
 
 mark,
 .text\:stamp {
+  background-image: url("/assets/images/noisy.png");
   color: var(--color-white) !important;
   mix-blend-mode: darken;
 }
