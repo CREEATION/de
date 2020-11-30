@@ -16,21 +16,25 @@ mixin link(is="inline")
       any: RegExp('(:\/\/)|#'),
     }
 
+    const set_title = (title, description) => {
+      return [description, title].filter(Boolean).join(":\n")
+    }
+
     if (regex_href.samepage.test(href)) {
       styles = ["text:yellow text:stamp"]
-      title = ["anchor link", title].filter(Boolean).join(":\n")
+      title = set_title(title, "anchor link")
     } else if (regex_href.external_https.test(href)) {
       styles = ["text:blue text:stamp prepend:person-golfing"]
-      title = ["external link", title].filter(Boolean).join(":\n")
+      title = set_title(title, "external link")
     } else if (regex_href.external_http.test(href)) {
       styles = ["text:blue text:stamp prepend:unlocked decoration:double-line-through opacity:half cursor:not-allowed"]
-      title = ["unsecure external link", title].filter(Boolean).join(":\n")
+      title = set_title(title, "unsecure external link")
     } else if (href)  {
       styles = ["text:green"]
-      title = ["internal link", title].filter(Boolean).join(":\n")
+      title = set_title(title, "internal link")
     } else {
       styles = ["text:red prepend:unlocked decoration:double-line-through opacity:half cursor:not-allowed"]
-      title = ["unsecure/invalid link", title].filter(Boolean).join(":\n")
+      title = set_title(title, "unsecure/invalid link")
     }
 
     // only allow valid link types
