@@ -1,17 +1,49 @@
 mixin link(is="inline")
   -
-    const type = is
-    let tabindex = !attributes.href ? undefined : attributes.tabindex|"0"
+    const href = attributes.href
+
+    let type = is
+    let styles = []
+    let title = href
+    let tabindex = !href ? undefined : attributes.tabindex|"0"
+
+    title = title||undefined
+
+    const regex_href = {
+      samepage: RegExp('^#'),
+      external_https: RegExp('https\:\/\/'),
+      external_http: RegExp('http\:\/\/'),
+      any: RegExp('(:\/\/)|#'),
+    }
+
+    if (regex_href.samepage.test(href)) {
+      styles = ["text:yellow text:stamp"]
+      title = ["anchor link", title].filter(Boolean).join(":\n")
+    } else if (regex_href.external_https.test(href)) {
+      styles = ["text:blue text:stamp prepend:person-golfing"]
+      title = ["external link", title].filter(Boolean).join(":\n")
+    } else if (regex_href.external_http.test(href)) {
+      styles = ["text:blue text:stamp prepend:unlocked decoration:double-line-through opacity:half cursor:not-allowed"]
+      title = ["unsecure external link", title].filter(Boolean).join(":\n")
+    } else if (href)  {
+      styles = ["text:green"]
+      title = ["internal link", title].filter(Boolean).join(":\n")
+    } else {
+      styles = ["text:red prepend:unlocked decoration:double-line-through opacity:half cursor:not-allowed"]
+      title = ["unsecure/invalid link", title].filter(Boolean).join(":\n")
+    }
 
     // only allow valid link types
     switch (type) {
       case "inline": break;
       case "block": break;
       case "inline-block": break;
-      default: throw `error: link type "${type}" doesn't exist!`;
+      default: throw `error: link type "${type}" doesn't exist! (use "inline" (default), "block" or "inline-block")`;
     }
 
-  a(tabindex=tabindex, class=`link link--${type}`)&attributes(attributes)
+    type = type == "inline" ? undefined : type
+
+  a(tabindex=tabindex, class=[type, ...styles], title=title)&attributes(attributes)
     if block
       block
 
