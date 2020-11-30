@@ -6,4 +6,10 @@ body {
 
   background-color: var(--color-white);
   color: var(--color-black);
+
+  & > * {
+    margin: 0 auto;
+    width: 70vw;
+    max-width: 50rem;
+  }
 }
