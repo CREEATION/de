@@ -1,12 +1,12 @@
 @charset "utf-8";
 
-/* https://hexnaw.com/hex/261f1f/b5b5b5/ffffff/4d0000/fa6161/254d00/77cc25/004d45/25ddcc */
+/* https://hexnaw.com/hex/261f1f/b5b5b5/f1f1f1/4d0000/fa6161/254d00/77cc25/004d45/25ddcc */
 
 :root {
   --color-black: #261f1f;
   --color-gray: #b5b5b5;
   --color-grey: var(--color-gray);
-  --color-white: #ffffff;
+  --color-white: #f1f1f1;
 
   --color-red: #fa6161;
   --color-red_a11y: #4d0000;
