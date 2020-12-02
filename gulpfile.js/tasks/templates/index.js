@@ -4,6 +4,7 @@ const {
   task_finalize,
   utils_root_dir,
   utils_template_modifier,
+  utils_screenreader_styles,
 } = require(`${process.cwd()}/lib`)
 
 module.exports = task_finalize(
@@ -34,6 +35,7 @@ module.exports = task_finalize(
               options: (template, obj) => {
                 return utils_template_modifier(template, obj, "options")
               },
+              screenreader_only: utils_screenreader_styles,
             },
           },
         }),
