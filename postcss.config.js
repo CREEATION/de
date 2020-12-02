@@ -3,9 +3,6 @@ module.exports = {
     // https://www.npmjs.com/package/postcss-import
     require("postcss-import")(),
 
-    // https://github.com/jonathantneal/postcss-color-mod-function
-    require("postcss-color-mod-function")(),
-
     // https://www.npmjs.com/package/postcss-functions
     require("postcss-functions")({
       functions: require("./postcss.functions"),
