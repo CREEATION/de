@@ -1,11 +1,12 @@
 @charset "utf-8";
 
 a {
-  text-decoration: solid underline;
-  white-space: nowrap;
-  text-shadow: initial;
+  color: currentColor;
   padding-left: 0.1em;
   padding-right: 0.1em;
+  text-decoration: dotted underline;
+  text-shadow: initial;
+  white-space: nowrap;
 
   /**
   * states
@@ -14,7 +15,7 @@ a {
   &:hover,
   &:focus,
   &:active {
-    text-decoration-style: dotted;
+    text-decoration-style: solid;
   }
 
   /**
@@ -24,8 +25,8 @@ a {
   &.block {
     border-radius: 0.25em;
     box-shadow: 0 0 0 0.025em inset;
-    text-align: center;
     padding: 0.25em 0.5em;
+    text-align: center;
   }
 
   &.ghost {
