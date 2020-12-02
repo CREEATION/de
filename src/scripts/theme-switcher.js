@@ -1,39 +1,66 @@
 "use strict"
 ;(function (document) {
-  const debugMode = false
+  const options = {
+    debug: false,
+    verbose: true,
+  }
+
+  const msg = (type, ...args) => {
+    if (type.toLowerCase() !== "debug" && options.verbose) {
+      console[type](`> ${[...args]}`)
+    } else if (options.debug) {
+      console.warn(`[debug]`, ...args)
+    }
+  }
+
   const themeSwitch = document.querySelector(`#theme-switch`)
   const themeSwitches = themeSwitch.querySelectorAll(`input[type="radio"]`)
   const themeRemember = themeSwitch.querySelector(`input[type="checkbox"]`)
   const themes = []
 
   function setCurrentTheme(themeId) {
+    msg("debug", `called setCurrentTheme(themeId: "${themeId}")`)
+
     themeSwitch.dataset.currentTheme = themeId
 
-    //- save theme in local storage if user wants to
-    attemptSaveTheme()
+    if (
+      localStorage.getItem("theme") &&
+      localStorage.getItem("theme") !== themeId
+    ) {
+      //- save theme in local storage if not already saved
+      attemptSaveTheme()
+    } else if (
+      localStorage.getItem("theme") &&
+      localStorage.getItem("theme") == themeId
+    ) {
+      msg("info", `loading saved theme "${themeId}" from local storage`)
+    } else {
+      msg("info", `loading theme "${themeId}"`)
+    }
 
     return themeId
   }
 
   function attemptSaveTheme(themeId) {
-    const currentTheme = themeSwitch.dataset.currentTheme || themeId
+    themeId = themeId || themeSwitch.dataset.currentTheme
+
+    msg("debug", `called attemptSaveTheme(themeId: "${themeId}")`)
 
     if (themeRemember.checked) {
-      localStorage.setItem("theme", currentTheme)
+      localStorage.setItem("theme", themeId)
+      msg("info", `saved theme "${themeId}" to local storage`)
     } else {
-      if (debugMode)
-        console.log(
-          `local storage for "theme" disabled.`,
-          `\n> didn't save theme "${currentTheme}" to local storage`
-        )
-
-      localStorage.removeItem("theme")
-      if (debugMode) console.log(`cleared local storage`)
+      if (localStorage.getItem("theme")) {
+        localStorage.removeItem("theme")
+        msg("info", `cleared local storage for "theme"`)
+      } else {
+        msg("debug", `didn't save theme "${themeId}" to local storage`)
+      }
     }
   }
 
   function applyTheme(themeId) {
-    if (debugMode) console.log(`called applyTheme(themeId: "${themeId}")`)
+    msg("debug", `called applyTheme(themeId: "${themeId}")`)
 
     setCurrentTheme(themeId)
 
@@ -49,18 +76,13 @@
 
   //- check if user saved theme selection and apply theme
   if (localStorage.getItem("theme") && localStorage.getItem("theme").length) {
-    console.log(
-      `local storage for "theme" found.`,
-      `\n> applying theme: "${localStorage.getItem("theme")}"`
-    )
+    msg("debug", `local storage for "theme" found`)
 
     themeRemember.checked = true
+
     applyTheme(localStorage.getItem("theme"))
   } else {
-    console.warn(
-      `local storage for "theme" disabled.`,
-      `\n> applying default theme: "${themeSwitch.dataset.defaultTheme}"`
-    )
+    msg("debug", `local storage for "theme" disabled`)
 
     //- otherwise, apply default theme
     applyTheme(themeSwitch.dataset.defaultTheme)
@@ -68,17 +90,13 @@
 
   //- form reset event
   themeSwitch.addEventListener("reset", function (e) {
-    console.warn(
-      `theme switcher form reset.`,
-      `\n> applying default theme: "${themeSwitch.dataset.defaultTheme}"`,
-      `\n> cleared local storage for "theme"`
-    )
+    msg("debug", `theme switcher form reset`)
 
     //- reset everything
     setTimeout(() => {
       themeRemember.dispatchEvent(new Event("change"))
       themeSwitches.forEach((element) => {
-        if (element.checked) {
+        if (element.dataset.theme == themeSwitch.dataset.defaultTheme) {
           element.dispatchEvent(new Event("change"))
         }
       })
@@ -87,8 +105,7 @@
 
   //- "remember" checkbox change event
   themeRemember.addEventListener("change", function (e) {
-    if (debugMode)
-      console.log(`checkbox "remember" changed to: ${this.checked}`)
+    msg("debug", `checkbox "remember" changed to: ${this.checked}`)
 
     //- attempt to save current theme to local storage
     attemptSaveTheme()
@@ -102,7 +119,7 @@
     themes.push(themeId)
 
     themeSwitchElement.addEventListener("change", function (e) {
-      if (debugMode) console.log(`theme selected: ${themeId}`)
+      msg("debug", `theme selected: ${themeId}`)
 
       applyTheme(themeId)
     })
