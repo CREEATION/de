@@ -3,6 +3,7 @@
 /* bits */
 @import "./bits/box-display.css";
 @import "./bits/colors.css";
+@import "./bits/cursor.css";
 @import "./bits/filters.css";
 @import "./bits/fonts.css";
 @import "./bits/links.css";
