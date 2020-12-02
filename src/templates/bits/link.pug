@@ -1,63 +1,96 @@
-mixin link(is="inline")
+mixin link(options={})
   -
-    const href = attributes.href
+    options = Object.assign({
+      color: undefined,
+      context: true,
+      display: "inline",
+      stamp: true,
+    }, options)
 
-    let type = is
+    const href = attributes.href
+    const tests = {
+      internal: RegExp('^/').test(href),
+      samepage: RegExp('^#').test(href),
+      external_https: RegExp('https\:\/\/').test(href),
+      external_http: RegExp('http\:\/\/').test(href),
+    }
+
     let styles = []
     let title = href
     let tabindex = !href ? undefined : attributes.tabindex|"0"
 
     title = title||undefined
 
-    const regex_href = {
-      samepage: RegExp('^#'),
-      external_https: RegExp('https\:\/\/'),
-      external_http: RegExp('http\:\/\/'),
-      any: RegExp('(:\/\/)|#'),
-    }
-
     const set_title = (title, description) => {
       return [description, title].filter(Boolean).join(":\n")
     }
 
-    if (regex_href.samepage.test(href)) {
-      styles = ["text:yellow text:stamp"]
+    //- todo: prettify
+    if (tests.samepage) {
+
       title = set_title(title, "anchor link")
-    } else if (regex_href.external_https.test(href)) {
-      styles = ["text:blue text:stamp prepend:person-golfing"]
+
+      styles.push(`color:${options.color||"default"}`)
+      if (options.stamp) styles.push("text:stamp")
+
+    } else if (tests.external_https) {
+
       title = set_title(title, "external link")
-    } else if (regex_href.external_http.test(href)) {
-      styles = ["text:blue text:stamp prepend:unlocked decoration:double-line-through opacity:half cursor:not-allowed"]
+
+      styles.push(`color:${options.color||"blue"}`)
+      if (options.stamp) styles.push("text:stamp")
+
+    } else if (tests.external_http) {
+
       title = set_title(title, "unsecure external link")
-    } else if (href)  {
-      styles = ["text:green"]
+
+      styles.push(`color:${options.color||"blue"}`)
+      if (options.stamp) styles.push("text:stamp")
+      styles.push("decoration:double-line-through")
+      styles.push("cursor:not-allowed")
+
+    } else if (tests.internal)  {
+
       title = set_title(title, "internal link")
+
+      styles.push(`color:${options.color||"green"}`)
+
     } else {
-      styles = ["text:red prepend:unlocked decoration:double-line-through opacity:half cursor:not-allowed"]
+
       title = set_title(title, "unsecure/invalid link")
+
+      styles.push(`color:${options.color||"red"}`)
+      styles.push("decoration:double-line-through")
+      styles.push("cursor:not-allowed")
+
     }
 
     // only allow valid link types
-    switch (type) {
+    switch (options.display) {
       case "inline": break;
       case "block": break;
       case "inline-block": break;
-      default: throw `error: link type "${type}" doesn't exist! (use "inline" (default), "block" or "inline-block")`;
+      default: throw `error: link type "${options.display}" doesn't exist! (use "inline" (default), "block" or "inline-block")`;
     }
 
-    type = type == "inline" ? undefined : type
+    options.display = options.display == "inline" ? undefined : options.display
 
-  a(tabindex=tabindex, class=[type, ...styles], title=title)&attributes(attributes)
+  a(tabindex=tabindex, class=[options.display, ...styles], title=title)&attributes(attributes)
     if block
       block
 
 //- examples overview
-mixin example-link(is="inline")
+mixin example-link(options={})
   -
+    options = Object.assign({
+      color: undefined,
+      display: "inline",
+    }, options)
+
     const type = "Link"
     let name
 
-    switch (is) {
+    switch (options.display) {
       case "inline":
         name = "Inline Link";
         break;
@@ -68,7 +101,7 @@ mixin example-link(is="inline")
         name = "Inline-Block Link";
         break;
       default:
-        throw `error: link type "${is}" doesn't exist!`;
+        throw `error: link type "${options.display}" doesn't exist!`;
     }
 
     const element = {
@@ -111,7 +144,7 @@ mixin example-link(is="inline")
       each example in examples
         tr
           td= example.invalid ? `` : `✅`
-          td: +link(is)(href=example.href)= example.name
+          td: +link(options)(href=example.href)= example.name
           td
             if example.notes
               small: code= example.notes
