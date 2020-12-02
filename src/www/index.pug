@@ -16,16 +16,16 @@ prepend page-template
     })
 
 block page-pre-body-content
-  form#theme-switch(data-default-theme="theme:auto")
+  form#theme-switch(data-default-theme="theme:system")
     mixin theme-switch-radio(id)
       div(data-theme=`theme:${id}`): label
         input(type="radio", name="theme-switch")
         if block
           span: block
 
-    +theme-switch-radio("dark")| dark theme
-    +theme-switch-radio("auto")| automatic
-    +theme-switch-radio("light")| light theme
+    +theme-switch-radio("dark")| dark
+    +theme-switch-radio("system")| system
+    +theme-switch-radio("light")| light
 
     div: label
       button(type="reset") reset

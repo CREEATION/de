@@ -7,7 +7,7 @@
     --theme-background_color: var(--theme-dark-background_color);
   }
 
-  &.theme\:auto {
+  &.theme\:system {
     @media (prefers-color-scheme: dark) {
       --theme-text_color: var(--theme-dark-text_color);
       --theme-background_color: var(--theme-dark-background_color);

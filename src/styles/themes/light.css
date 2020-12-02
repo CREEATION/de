@@ -7,7 +7,7 @@
     --theme-background_color: var(--theme-light-background_color);
   }
 
-  &.theme\:auto {
+  &.theme\:system {
     @media (prefers-color-scheme: light) {
       --theme-text_color: var(--theme-light-text_color);
       --theme-background_color: var(--theme-light-background_color);
