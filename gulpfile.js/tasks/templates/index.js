@@ -14,7 +14,7 @@ module.exports = task_finalize(
     const { src, dest } = require("gulp")
     const data = require("gulp-data")
     const template_engine = require("gulp-pug")
-    const formatter = require("gulp-prettier")
+    const beautifier = require("gulp-prettier")
 
     require("pump")(
       [
@@ -39,7 +39,7 @@ module.exports = task_finalize(
             },
           },
         }),
-        formatter(),
+        beautifier(),
         dest("dist"),
         require("browser-sync").stream(),
       ],

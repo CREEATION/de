@@ -8,6 +8,7 @@ module.exports = task_finalize(
     const sourcemaps = require("gulp-sourcemaps")
     const rename = require("gulp-rename")
     const terser = require("gulp-terser")
+    const beautifier = require("gulp-prettier")
 
     require("pump")(
       [
@@ -15,6 +16,8 @@ module.exports = task_finalize(
           dot: true,
         }),
         sourcemaps.init(),
+        beautifier(),
+        dest("dist/assets/js"),
         terser(),
         rename((path) => (path.extname = ".min.js")),
         sourcemaps.write("sourcemaps"),
