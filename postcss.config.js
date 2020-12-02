@@ -13,11 +13,12 @@ module.exports = {
 
     // https://www.npmjs.com/package/postcss-preset-env
     require("postcss-preset-env")({
-      stage: 1,
       features: {
         "all-property": { reset: "inherited" },
-        "custom-properties": { preserve: false },
+        "custom-properties": true,
       },
+      preserve: true,
+      stage: 1,
     }),
 
     // https://www.npmjs.com/package/postcss-calc
