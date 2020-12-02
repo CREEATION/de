@@ -1,10 +1,13 @@
 @charset "utf-8";
 
+/* https://hexnaw.com/hex/261f1f/b5b5b5/ffffff/4d0000/fa6161/254d00/77cc25/004d45/25ddcc */
+
 :root {
   --color-black: #261f1f;
   --color-gray: #b5b5b5;
   --color-grey: var(--color-gray);
   --color-white: #ffffff;
+
   --color-red: #fa6161;
   --color-red_a11y: #4d0000;
 
@@ -13,9 +16,92 @@
 
   --color-blue: #25ddcc;
   --color-blue_a11y: #004d45;
+
+  --color-primary: var(--color-green);
+  --color-secondary: var(--color-black);
+
   --theme-text_color: var(--color-black);
   --theme-background_color: var(--color-white);
+}
 
-  --color-brand_primary: var(--color-green);
-  --color-brand_secondary: var(--color-white);
+.color {
+  &\:default {
+    color: currentColor;
+  }
+
+  &\:black {
+    color: var(--color-black);
+  }
+
+  &\:gray,
+  &\:grey {
+    color: var(--color-gray);
+  }
+
+  &\:white {
+    color: var(--color-white);
+  }
+
+  &\:red {
+    color: var(--color-red);
+  }
+
+  &\:red_a11y {
+    color: var(--color-red_a11y);
+  }
+
+  &\:green {
+    color: var(--color-green);
+  }
+
+  &\:green_a11y {
+    color: var(--color-green_a11y);
+  }
+
+  &\:blue {
+    color: var(--color-blue);
+  }
+
+  &\:blue_a11y {
+    color: var(--color-blue_a11y);
+  }
+}
+
+.bg-color {
+  &\:black {
+    background-color: var(--color-black);
+  }
+
+  &\:gray,
+  &\:grey {
+    background-color: var(--color-gray);
+  }
+
+  &\:white {
+    background-color: var(--color-white);
+  }
+
+  &\:red {
+    background-color: var(--color-red);
+  }
+
+  &\:red_a11y {
+    background-color: var(--color-red_a11y);
+  }
+
+  &\:green {
+    background-color: var(--color-green);
+  }
+
+  &\:green_a11y {
+    background-color: var(--color-green_a11y);
+  }
+
+  &\:blue {
+    background-color: var(--color-blue);
+  }
+
+  &\:blue_a11y {
+    background-color: var(--color-blue_a11y);
+  }
 }
