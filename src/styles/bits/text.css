@@ -8,7 +8,7 @@
 
 mark,
 .text\:stamp {
-  color: currentColor !important;
+  color: var(--theme-background_color);
   background-color: var(--color-gray);
   background-image: url("/assets/images/noisy.png");
 
