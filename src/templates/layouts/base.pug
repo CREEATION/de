@@ -3,14 +3,6 @@
   let template = {
     data: {
       page_title: "Untitled Page"
-    },
-    options: {
-      screenreader_intro: true,
-      themes: [
-        { id: "default", name: "Default" },
-        { id: "dark_mode", name: "Dark Mode", checked: true },
-        { id: "high_contrast", name: "High Contrast" },
-      ]
     }
   }
 
@@ -38,20 +30,10 @@ block page-template
           link(rel="stylesheet", href="/assets/css/creeation.css")
 
       block page-preload-scripts
-
     body
-      if helpers.options(template, "screenreader_intro")
-        .screenreader-only
-          block screenreader-intro
-            p This text should be hidden with CSS so it won't show visually, but screenreaders read it out loud.
+      block page-pre-body-content
 
       header.page-header
-        //- div
-        //-   each theme in helpers.options(template, "themes")
-        //-     label(data-theme=theme.id)
-        //-       input.theme-switch(type="radio", name="theme", checked=theme.checked||undefined)
-        //-       | #{theme.name}
-
         block page-header
           //- h1= helpers.data(template, "page_title")
 
@@ -64,29 +46,4 @@ block page-template
         small &copy; #{new Date().getFullYear()}
         span #{data.info.displayName} / #{data.info.author.name}
 
-      block page-ready-scripts
-        script.
-          function ready(fn) {
-            if (document.readyState != 'loading') {
-              fn()
-            } else {
-              document.addEventListener('DOMContentLoaded', fn)
-            }
-          }
-
-          ready(() => {
-            let switches = document.querySelectorAll(".theme-switch")
-
-            Array.prototype.forEach.call(switches, (el, i) => {
-              if (el.getAttribute("checked") !== null) {
-                document.body.setAttribute("class", `theme:${el.parentNode.getAttribute("data-theme")}`)
-              }
-
-              el.addEventListener("click", (e) => {
-                const theme_id = e.target.parentNode.getAttribute("data-theme")
-                const body_class = document.body.getAttribute("class")
-
-                document.body.setAttribute("class", `theme:${theme_id}`)
-              })
-            })
-          })
+      block page-after-body-content
