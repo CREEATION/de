@@ -8,7 +8,8 @@ module.exports = task_finalize(
     require("./assets/fonts"),
     require("./assets/images"),
     require("./templates"),
-    require("./styles")
+    require("./styles"),
+    require("./scripts")
   ),
   {
     metadata: {

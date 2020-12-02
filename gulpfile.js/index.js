@@ -7,6 +7,7 @@ module.exports = tasks_require([
   "assets/images",
   "templates",
   "styles",
+  "scripts",
   "build",
   "default",
   "serve",

@@ -12,6 +12,7 @@ module.exports = task_finalize(
     })
 
     require("./assets/images").watch()
+    require("./scripts").watch()
     require("./styles").watch()
     require("./templates").watch()
   },
