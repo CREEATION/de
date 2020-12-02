@@ -12,7 +12,10 @@ body {
   background-color: var(--theme-background_color);
   color: var(--theme-text_color);
 
-  & > * {
+  & > div,
+  & > header,
+  & > main,
+  & > footer {
     margin: 0 auto;
     width: 70vw;
     max-width: 50rem;
