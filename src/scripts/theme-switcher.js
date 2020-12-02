@@ -14,8 +14,9 @@
   }
 
   const themeSwitch = document.querySelector(`#theme-switch`)
-  const themeSwitches = themeSwitch.querySelectorAll(`input[type="radio"]`)
-  const themeRemember = themeSwitch.querySelector(`input[type="checkbox"]`)
+  const themeSwitches = themeSwitch.querySelectorAll(`[data-theme]`)
+  const themeSwitchToggles = themeSwitch.querySelectorAll(`[type="radio"]`)
+  const themeRemember = themeSwitch.querySelector(`[type="checkbox"]`)
   const themes = []
 
   function setCurrentTheme(themeId) {
@@ -64,12 +65,12 @@
 
     setCurrentTheme(themeId)
 
-    //- apply theme class to document body
-    document.body.classList.remove(...themes)
-    document.body.classList.add(themeId)
+    //- apply theme class to document
+    document.firstElementChild.classList.remove(...themes)
+    document.firstElementChild.classList.add(themeId)
 
     //- set appropriate radio input
-    themeSwitch.querySelector(`input[data-theme="${themeId}"]`).checked = true
+    themeSwitch.querySelector(`[data-theme="${themeId}"] input`).checked = true
 
     return themeId
   }
@@ -95,9 +96,9 @@
     //- reset everything
     setTimeout(() => {
       themeRemember.dispatchEvent(new Event("change"))
-      themeSwitches.forEach((element) => {
+      themeSwitches.forEach((element, i) => {
         if (element.dataset.theme == themeSwitch.dataset.defaultTheme) {
-          element.dispatchEvent(new Event("change"))
+          themeSwitchToggles[i].dispatchEvent(new Event("change"))
         }
       })
     })
@@ -113,12 +114,13 @@
 
   //- register themes
   for (let i = 0; i < themeSwitches.length; i++) {
+    const themeSwitchToggle = themeSwitchToggles[i]
     const themeSwitchElement = themeSwitches[i]
     const themeId = themeSwitchElement.dataset.theme
 
     themes.push(themeId)
 
-    themeSwitchElement.addEventListener("change", function (e) {
+    themeSwitchToggle.addEventListener("change", function (e) {
       msg("debug", `theme selected: ${themeId}`)
 
       applyTheme(themeId)

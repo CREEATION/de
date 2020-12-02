@@ -1,6 +1,16 @@
-@media (prefers-color-scheme: light) {
-  :root {
-    --theme-text_color: var(--color-black);
-    --theme-background_color: var(--color-white);
+:root {
+  --theme-light-text_color: var(--color-black);
+  --theme-light-background_color: var(--color-white);
+
+  &.theme\:light {
+    --theme-text_color: var(--theme-light-text_color);
+    --theme-background_color: var(--theme-light-background_color);
+  }
+
+  &.theme\:auto {
+    @media (prefers-color-scheme: light) {
+      --theme-text_color: var(--theme-light-text_color);
+      --theme-background_color: var(--theme-light-background_color);
+    }
   }
 }
