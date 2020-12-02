@@ -16,15 +16,20 @@ prepend page-template
     })
 
 block page-pre-body-content
-  form#theme-switch(data-default-theme="theme:dark")
-    div: label
-      input(type="radio", name="theme-switch", data-theme="theme:light")
-      span light theme
-    div: label
-      input(type="radio", name="theme-switch", data-theme="theme:dark")
-      span dark theme
+  form#theme-switch(data-default-theme="theme:auto")
+    mixin theme-switch-radio(id)
+      div(data-theme=`theme:${id}`): label
+        input(type="radio", name="theme-switch")
+        if block
+          span: block
+
+    +theme-switch-radio("dark")| dark theme
+    +theme-switch-radio("auto")| automatic
+    +theme-switch-radio("light")| light theme
+
     div: label
       button(type="reset") reset
+
     div: label
       input(type="checkbox", name="theme-switch-remember")
       span remember
