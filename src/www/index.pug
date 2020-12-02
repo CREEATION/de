@@ -16,26 +16,14 @@ prepend page-template
     })
 
 block page-pre-body-content
-  form#theme-switch(data-default-theme="theme:system")
-    mixin theme-switch-radio(id)
-      div(data-theme=`theme:${id}`): label
-        input(type="radio", name="theme-switch")
-        if block
-          span: block
-
-    +theme-switch-radio("dark")| dark
-    +theme-switch-radio("system")| system
-    +theme-switch-radio("light")| light
-
-    div: label
-      button(type="reset") reset
-
-    div: label
-      input(type="checkbox", name="theme-switch-remember")
-      span remember
-
-  script(src="/assets/js/theme-switcher.min.js")
-
+  +theme-switcher({
+    defaultTheme: "system",
+    themes: [
+      "dark",
+      "system",
+      "light",
+    ],
+  })
 //- layout blocks
 block page-main
   div(style=helpers.screenreader_only())
