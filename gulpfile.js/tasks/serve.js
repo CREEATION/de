@@ -5,7 +5,7 @@ const { task_finalize } = require(`${process.cwd()}/lib`)
 module.exports = task_finalize(
   () => {
     require("browser-sync").init({
-      notify: true,
+      notify: false,
       open: false,
       online: false,
       server: "dist",
