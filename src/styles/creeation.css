@@ -21,4 +21,5 @@
 @import "./sections/body.css";
 
 /* themes */
-@import "./themes/dark_mode.css";
+@import "./themes/dark.css";
+@import "./themes/light.css";

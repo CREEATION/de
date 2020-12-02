@@ -1,0 +1,6 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme-text_color: var(--color-gray);
+    --theme-background_color: var(--color-black);
+  }
+}

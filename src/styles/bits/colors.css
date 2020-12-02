@@ -8,7 +8,8 @@
   --color-red: #fa6161;
   --color-green: #77cc25;
   --color-blue: #25ddcc;
-  --color-yellow: #dce225;
+  --theme-text_color: var(--color-black);
+  --theme-background_color: var(--color-white);
 
   --color-brand_primary: var(--color-green);
   --color-brand_secondary: var(--color-white);
