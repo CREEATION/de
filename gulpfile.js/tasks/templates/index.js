@@ -1,66 +1,32 @@
 "use strict"
 
-const {
-  task_finalize,
-  utils_root_dir,
-  utils_template_modifier,
-  utils_screenreader_styles,
-} = require(`${process.cwd()}/lib`)
+const { task_finalize, utils_config } = require(`${process.cwd()}/lib`)
+const { series } = require("gulp")
+const { magenta } = require("ansi-colors")
+
+const default_lang = utils_config("gulp-html-i18n").config.defaultLang
+const default_lang_string = `default language: ${magenta(default_lang)}`
 
 module.exports = task_finalize(
-  (cb) => {
-    const packagejson = require(utils_root_dir("/package.json"))
-
-    const path = require("path")
-    const { src, dest } = require("gulp")
-    const data = require("gulp-data")
-    const template_engine = require("gulp-pug")
-    const beautifier = require("gulp-prettier")
-
-    require("pump")(
-      [
-        src("src/www/**/*.pug"),
-        data(() => {
-          return {
-            data: {
-              info: packagejson,
-            },
-          }
-        }),
-        template_engine({
-          basedir: `.${path.sep}`,
-          locals: {
-            helpers: {
-              data: (template, obj) => {
-                return utils_template_modifier(template, obj, "data")
-              },
-              options: (template, obj) => {
-                return utils_template_modifier(template, obj, "options")
-              },
-              screenreader_only: utils_screenreader_styles,
-            },
-          },
-        }),
-        beautifier(),
-        dest("dist"),
-        require("browser-sync").stream(),
-      ],
-      cb
-    )
-  },
+  series(
+    require("./compile"),
+    require("./localize").clean,
+    require("./localize")
+  ),
   {
     metadata: {
       displayName: "templates",
-      description: "compiles pug to html",
-      flags: undefined,
+      description: `compiles templates (${default_lang_string})`,
+      flags: utils_config().tasks["templates"].flags,
     },
-    options: {
-      clean: {
-        patterns: ["dist/**/*.html", "!dist/assets/"],
+    options: Object.assign(
+      {
+        watch: {
+          patterns: ["src/**/*.pug", "src/lang/**/*", "package.json"],
+        },
       },
-      watch: {
-        patterns: ["src/**/*.pug", "package.json"],
-      },
-    },
+      require("./compile").config.options,
+      require("./localize").config.options
+    ),
   }
 )

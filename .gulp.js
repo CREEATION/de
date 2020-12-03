@@ -1,6 +1,18 @@
 "use strict"
 
-const config = {}
+const config = {
+  tasks: {
+    templates: {
+      flags: [
+        {
+          id: "-l",
+          description: `localize templates in a specific language (omit language for all languages)`,
+          placeholder: require("./lib/utils/get-langs")(),
+        },
+      ],
+    },
+  },
+}
 
 config.project = {
   name: "CREEATION.de",
@@ -40,11 +52,6 @@ config.project = {
  */
 config.gulp_cli = {
   description: config.project.name,
-  flags: {
-    continue: true,
-    compactTasks: true,
-    silent: false,
-  },
 }
 
 // merge gulp-cli configuration into config root

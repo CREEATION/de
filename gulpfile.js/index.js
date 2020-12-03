@@ -9,8 +9,8 @@ module.exports = tasks_require([
   "styles",
   "scripts",
   "build",
-  "default",
   "serve",
+  "default",
 ])
 
 // dev configs
