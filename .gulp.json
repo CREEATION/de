@@ -1,3 +1,13 @@
 {
-  "description": "CREEATION.de"
+  "description": "CREEATION.de",
+  "dev": {
+    "browser-sync": {
+      "server": "dist",
+      "port": 6077,
+      "localOnly": true,
+      "online": false,
+      "open": false,
+      "notify": false
+    }
+  }
 }
