@@ -11,6 +11,7 @@ module.exports = task_finalize(
   (cb) => {
     const packagejson = require(utils_root_dir("/package.json"))
 
+    const path = require("path")
     const { src, dest } = require("gulp")
     const data = require("gulp-data")
     const template_engine = require("gulp-pug")
@@ -27,6 +28,7 @@ module.exports = task_finalize(
           }
         }),
         template_engine({
+          basedir: `.${path.sep}`,
           locals: {
             helpers: {
               data: (template, obj) => {

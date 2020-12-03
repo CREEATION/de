@@ -1,5 +1,5 @@
 //- layout
-extends ../templates/layouts/base
+extends /src/templates/layouts/base
 
 //- modify existing template data and options or add your own here
 prepend page-template
@@ -42,7 +42,7 @@ block page-main
       The above is probably not what you were looking for. 🤷
       Nevertheless, I'm currently available for hire, so feel free to continue lurking around. 👀
 
-  img(src="assets/images/thomas_creeten.png", class="filter:wash")
+  img(src="/assets/images/thomas_creeten.png", class="filter:wash")
 
   h1 Hello fellow being!
 
@@ -57,4 +57,4 @@ block page-main
     Follow me.
 
 block page-footer
-  img(src="assets/images/creeation-logo.svg", alt="CREEATION Logo", title="CREEATION")
+  img(src="/assets/images/creeation-logo.svg", alt="CREEATION Logo", title="CREEATION")
