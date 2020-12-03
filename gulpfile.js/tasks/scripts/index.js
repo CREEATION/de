@@ -10,13 +10,13 @@ module.exports = task_finalize(
     const terser = require("gulp-terser")
     const beautifier = require("gulp-prettier")
 
+    const src_glob = "src/scripts/*.js"
+    const src_glob_opt = { dot: true }
     let processed_first_script = false
 
     require("pump")(
       [
-        src("src/scripts/*.js", {
-          dot: true,
-        }),
+        src(src_glob, src_glob_opt),
         sourcemaps.init(),
         beautifier(),
         dest("dist/assets/js"),
@@ -25,23 +25,25 @@ module.exports = task_finalize(
           path.extname = ".min.js"
 
           if (!processed_first_script) {
+            const number_of_files = require("globby").sync(
+              src_glob,
+              src_glob_opt
+            ).length
+
             utils_log(
               {
-                text: `>`,
+                text: `> `,
                 color: "cyan",
               },
               {
-                text: `minifying`,
-                color: "reset",
+                text: `minifying `,
               },
               {
-                text: require("globby").sync("src/scripts/*.js", { dot: true })
-                  .length,
+                text: number_of_files,
                 color: "magenta",
               },
               {
-                text: `javascript files...`,
-                color: "reset",
+                text: ` javascript files...`,
               }
             )
 
