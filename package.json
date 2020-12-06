@@ -1,16 +1,17 @@
 {
-  "displayName": "CREEATION.de",
   "name": "creeation-de",
+  "version": "0.1.0",
+  "private": true,
   "description": "personal playground",
   "homepage": "https://www.CREEATION.de",
-  "version": "0.1.0",
   "author": {
     "name": "Thomas Creeten",
     "email": "thomas@creeation.de",
     "url": "https://creeation.de"
   },
-  "private": true,
+  "prettier": "@creeation/prettier-config",
   "devDependencies": {
+    "@creeation/prettier-config": "^1.0.1",
     "ansi-colors": "^4.1.1",
     "browser-sync": "^2.26.12",
     "del": "^6.0.0",
@@ -28,6 +29,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-tap": "^2.0.0",
     "gulp-terser": "^2.0.0",
+    "gulplog": "^1.0.0",
     "postcss": "^8.1.1",
     "postcss-calc": "^7.0.5",
     "postcss-functions": "^3.0.0",
