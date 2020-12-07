@@ -5,11 +5,11 @@ const { task_finalize } = require(`${process.cwd()}/lib`)
 
 module.exports = task_finalize(
   parallel(
-    require("./assets/fonts"),
-    require("./assets/images"),
     require("./templates"),
+    require("./assets/images"),
+    require("./scripts"),
     require("./styles"),
-    require("./scripts")
+    require("./assets/fonts")
   ),
   {
     metadata: {
@@ -20,6 +20,9 @@ module.exports = task_finalize(
     options: {
       clean: {
         patterns: ["dist/**/*", "!dist", "!dist/.gitkeep"],
+      },
+      watch: {
+        patterns: ["src/**/*"],
       },
     },
   }
