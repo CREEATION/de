@@ -44,22 +44,34 @@ module.exports = task_finalize(
             text: `'`,
           },
           {
-            text: ` (${bs.getOption("online") ? "online" : "offline"})`,
-            color: "cyan",
+            text: ` (local: `,
+            color: "gray",
+          },
+          {
+            text: !bs.getOption("online"),
+            color: "magenta",
+          },
+          {
+            text: `)`,
+            color: "gray",
           }
         )
 
         utils_log(
           {
+            text: `~ `,
+            color: "cyan",
+          },
+          {
             text: `Watchers: `,
-            color: "yellow",
+            color: "gray",
           },
           {
             text: tasksNames,
-            color: "red",
+            color: "magenta",
             sep: {
-              color: "cyan",
-              text: " | ",
+              color: "gray",
+              text: ", ",
             },
           }
         )
