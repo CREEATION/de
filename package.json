@@ -9,6 +9,9 @@
     "email": "thomas@creeation.de",
     "url": "https://creeation.de"
   },
+  "scripts": {
+    "node-env": "npm list -g --depth 0"
+  },
   "prettier": "@creeation/prettier-config",
   "devDependencies": {
     "@creeation/prettier-config": "^1.0.1",
