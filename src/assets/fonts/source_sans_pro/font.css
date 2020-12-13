@@ -1,0 +1,39 @@
+/* source-sans-pro-200 - latin */
+@font-face {
+  font-weight: 200;
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  src: local(""),
+    url("../../assets/fonts/source_sans_pro/source-sans-pro-v14-latin-200.woff2")
+      format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../../assets/fonts/source_sans_pro/source-sans-pro-v14-latin-200.woff")
+      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
+}
+/* source-sans-pro-regular - latin */
+@font-face {
+  font-weight: 400;
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  src: local(""),
+    url("../../assets/fonts/source_sans_pro/source-sans-pro-v14-latin-regular.woff2")
+      format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../../assets/fonts/source_sans_pro/source-sans-pro-v14-latin-regular.woff")
+      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
+}
+/* source-sans-pro-900 - latin */
+@font-face {
+  font-weight: 900;
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  src: local(""),
+    url("../../assets/fonts/source_sans_pro/source-sans-pro-v14-latin-900.woff2")
+      format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("../../assets/fonts/source_sans_pro/source-sans-pro-v14-latin-900.woff")
+      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  font-display: swap;
+}

@@ -1,12 +1,16 @@
 @charset "utf-8";
 
 a {
+  --spacing: 0.1em;
+  margin-right: calc(var(--spacing) * -1);
+  margin-left: calc(var(--spacing) * -1);
+  padding-right: var(--spacing);
+  padding-left: var(--spacing);
+
   color: currentColor;
-  padding-left: 0.1em;
-  padding-right: 0.1em;
+  white-space: nowrap;
   text-decoration: dotted underline;
   text-shadow: initial;
-  white-space: nowrap;
 
   /**
   * states
@@ -23,10 +27,10 @@ a {
   */
   &.inline-block,
   &.block {
-    border-radius: 0.25em;
-    box-shadow: 0 0 0 0.025em inset;
     padding: 0.25em 0.5em;
     text-align: center;
+    border-radius: 0.25em;
+    box-shadow: 0 0 0 0.025em inset;
   }
 
   &.ghost {

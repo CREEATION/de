@@ -19,6 +19,7 @@ module.exports = task_finalize(
     const data = require("gulp-data")
     const tap = require("gulp-tap")
     const template_engine = require("gulp-pug")
+    const inline_source = require("gulp-inline-source-html")
     const beautifier = require("gulp-prettier")
 
     const langs = utils_get_langs()
@@ -35,7 +36,7 @@ module.exports = task_finalize(
               path.format({
                 dir: path.dirname(file.path),
                 base: filename,
-              })
+              }),
             )
             .split(`src${path.sep}www${path.sep}`)[1]
           const fileurl = path.dirname(filepath).replace(path.sep, "/")
@@ -68,11 +69,11 @@ module.exports = task_finalize(
             },
           },
         }),
+        inline_source({ compress: true }),
         beautifier(),
         dest("dist"),
-        utils_browser_sync_instance().stream({ once: true }),
       ],
-      cb
+      cb,
     )
   },
   {
@@ -86,5 +87,5 @@ module.exports = task_finalize(
         patterns: ["dist/**/*", "!dist", "!dist/assets/"],
       },
     },
-  }
+  },
 )

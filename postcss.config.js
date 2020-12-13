@@ -22,7 +22,7 @@ module.exports = {
     }),
 
     // https://www.npmjs.com/package/postcss-calc
-    require("postcss-calc")({ warnWhenCannotResolve: true }),
+    require("postcss-calc")(),
 
     // https://www.npmjs.com/package/postcss-reporter
     require("postcss-reporter")({

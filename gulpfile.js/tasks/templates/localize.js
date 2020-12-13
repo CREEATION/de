@@ -23,9 +23,8 @@ module.exports = task_finalize(
         utils_log_stream(),
         i18n(utils_config("gulp-html-i18n").config),
         dest("dist"),
-        utils_browser_sync_instance().stream({ once: true }),
       ],
-      cb
+      cb,
     )
   },
   {
@@ -39,5 +38,5 @@ module.exports = task_finalize(
         patterns: utils_get_langs().map((lang) => `dist/${lang}`),
       },
     },
-  }
+  },
 )

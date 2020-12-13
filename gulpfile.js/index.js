@@ -7,17 +7,24 @@ const { tasks_require, task_get_name } = require("../lib")
 const tasks_overwrite_with_sample = ["clean", "watch"]
 
 let tasks = tasks_require([
+  "assets",
   "assets/fonts",
   "assets/images",
   "build",
   "clean",
   "default",
   "scripts",
+  "scripts/inject",
   "serve",
   "styles",
+  "styles/compile",
+  "styles/optimize",
+  "styles/inject",
   "templates",
   "templates/compile",
-  "templates/localize",
+  // "templates/localize",
+  "templates/optimize",
+  "templates/inject",
   "watch",
 ])
 

@@ -26,12 +26,13 @@ config.project = {
     {
       name: "browser-sync",
       config: {
+        // watch: true,
         server: "dist",
         port: 6077,
         localOnly: true,
         online: false,
         open: false,
-        notify: false,
+        notify: true,
       },
     },
     {

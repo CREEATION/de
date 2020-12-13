@@ -1,5 +1,29 @@
 @charset "utf-8";
 
 p {
+  padding: var(--grid-column-gap) calc(var(--grid-column-gap) * 2);
+  font-weight: normal;
   font-size: 2em;
+  line-height: 1.5;
+}
+
+.glue {
+  &\:next {
+    --spacing: 1px;
+
+    margin-bottom: var(--spacing);
+
+    & + p {
+      margin-top: var(--spacing);
+    }
+  }
+}
+
+.round {
+  --radius: 0.3rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+
+  & + .round {
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
 }

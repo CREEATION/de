@@ -44,17 +44,16 @@ module.exports = task_finalize(
           // imagemin options
           {
             verbose: false,
-          }
+          },
         ),
         dest("dist/assets/images"),
-        require("browser-sync").stream(),
       ],
-      cb
+      cb,
     )
   },
   {
     metadata: {
-      displayName: "images",
+      displayName: "assets:images",
       description: "compresses gif/jpg/png/svg files using imagemin",
       flags: undefined,
     },
@@ -66,5 +65,5 @@ module.exports = task_finalize(
         patterns: ["src/assets/images/**/*"],
       },
     },
-  }
+  },
 )

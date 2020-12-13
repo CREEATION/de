@@ -27,7 +27,7 @@ module.exports = task_finalize(
           if (!processed_first_script) {
             const number_of_files = require("globby").sync(
               src_glob,
-              src_glob_opt
+              src_glob_opt,
             ).length
 
             utils_log(
@@ -44,7 +44,7 @@ module.exports = task_finalize(
               },
               {
                 text: ` javascript files...`,
-              }
+              },
             )
 
             processed_first_script = true
@@ -52,9 +52,8 @@ module.exports = task_finalize(
         }),
         sourcemaps.write("sourcemaps"),
         dest("dist/assets/js"),
-        require("browser-sync").stream({ match: "**/*.js" }),
       ],
-      cb
+      cb,
     )
   },
   {
@@ -71,5 +70,5 @@ module.exports = task_finalize(
         patterns: ["src/scripts/**/*.js"],
       },
     },
-  }
+  },
 )

@@ -1,67 +1,91 @@
 //- layout
 extends /src/templates/layouts/base
 
-//- modify existing template data and options or add your own here
+//- modify existing template data/options
+//- preferably add your own in a layout template
+//- or add page-specific data/options here
 prepend page-template
   -
-    //- show defaults:
+    //- show defaults in terminal:
     //- console.log(helpers.data(template), helpers.options(template))
 
+    //- overwrite defaults
     helpers.data(template, {
       page_title: "UX-driven Web Development by Thomas Creeten | CREEATION.de",
+      profiles: {
+        enable: false,
+        data: [
+          { label:"GitHub",         url: "#0" },
+          { label:"CodePen",        url: "#0" },
+          { label:"LinkedIn",       url: "#0" },
+          { label:"Spotify",        url: "#0" },
+          { label:"Steam",          url: "#0" },
+          { label:"Telegram",       url: "#0" },
+          { label:"Twitter",        url: "#0" },
+          { label:"watched.li",     url: "#0" },
+          { label:"YouTube",        url: "#0" },
+          { label:"zum quadrat",    url: "#0" },
+        ]
+      }
     })
 
     helpers.options(template, {
-      screenreader_intro: true,
+      css: true,
+      color_schemes: ["dark"].join(" ")
     })
 
-block page-pre-body-content
-  +theme-switcher({
-    defaultTheme: "system",
-    themes: [
-      "dark",
-      "system",
-      "light",
-    ],
-  })
-//- layout blocks
-block page-main
-  div(style=helpers.screenreader_only())
-    p.
-      Hello! My name is Thomas Creeten and I welcome you to my website! 🐢
-      If you're hearing this, you're probably unable to see what I'd love you
-      to be able to see. You might just wish to skip my blabber, in which case
-      you'd simply press Tab and go explore yourself. 🕵️‍♀️
+mixin page-header()
+  header#page-header
+    .introduction
+      div
+        h1
+          span(class="color:white") Hello! 🐢
+          |
+          |
+          span(class="color:green") I'm Thomas
 
-      I've crafted this website as sort of a text adventure, so you should be
-      able to navigate everything without a mouse. If this doesn't work out or
-      you get lost along the way, please get in touch with me so I can improve
-      accessibility for everyone visiting this website.
+        p(class="text:large color:white")
+          span I push #[+link(href="https://github.com/creeation") code]
+          |
+          |
+          span &amp; love #[+link({ color: "red" })(href="https://www.a11yproject.com") #a11y].
 
-    p(aria-label="For people looking at the source code:").
-      The above is probably not what you were looking for. 🤷
-      Nevertheless, I'm currently available for hire, so feel free to continue lurking around. 👀
+      img(src="../../dist/assets/images/thomas_creeten.png", class="image-rendering:pixelated image-align:center", width="170", height="170", alt="Pixel-Art Portrait of Thomas Creeten", inline)
 
-  img(src="/assets/images/thomas_creeten.png", class="filter:wash")
+mixin page-main()
+  main#page-main
+        p.
+          I'm looking for a front-end development job opportunity. So, if you happen to be a recruiter (👀) feel free to
+          check out my #[+link({color:"green"})(href="https://linkedin.com/in/creeten") LinkedIn profile] and get in touch.
 
-  h1 ${{ index.hello }}$
+        p.
+          Alternatively, you can contact me through #[+link({color:"blue"})(href="https://t.me/creeten") Telegram] or via #[+link({color:"green", stamp: false})(href="mailto:thomas@creeation.de") thomas@creeation.de]
 
-  p.
-    #[+link(href="https://github.com/creeation") I write code] and love
-    #[+link({ color: "red" })(href="https://www.a11yproject.com") #a11y].
+        p(class="text:medium bg-color:gray color:black glue:next round").
+          There are a lot of features and optimizations I'm currently working on and experimenting with
+          for this website which I'll list here once I've settled on priorities.
 
-  p.
-    I've developed a focus on interface usability optimization and #[+link({ color: "green" })(href="#") user experience].
+        p(class="text:medium text:narrow text:bold bg-color:red color:black text:center font:monospace round").
+          In the meantime, this placeholder content has to do.<br>stay tuned 💻🐛
 
-  p.
-    ${{ index.follow }}$
+mixin page-footer()
+  footer#page-footer
+    if helpers.data(template, "profiles").enable
+      h2 Profiles
+      ul
+        each profile in helpers.data(template, "profiles").data
+          li: +link(href=profile.url)= profile.label
 
-  p #[strong current language]: ${{ _lang_ }}$
-  p #[strong available languages]: #{data.langs.join(", ")}
-  p #[strong default/fallback language]: ${{ _default_lang_ }}$
-  p #[strong filename]: #{data.filename}
-  p #[strong filepath]: #{data.filepath}
-  p #[strong fileurl]: #{data.fileurl}
 
-block page-footer
-  img(src="/assets/images/creeation-logo.svg", alt="CREEATION Logo", title="CREEATION")
+    .copyright
+      img(src="../assets/images/creeation-logo.svg", class="logo:adapt image-align:center", alt="CREEATION Logo", title="CREEATION", inline)
+      span(class="font:monospace") &copy; #{new Date().getFullYear()} #{data.info.author.name}
+
+
+block page-body
+  #page
+    +page-header()
+    +page-main()
+
+  +page-footer()
+

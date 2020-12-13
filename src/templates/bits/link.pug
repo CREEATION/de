@@ -10,9 +10,10 @@ mixin link(options={})
     const href = attributes.href
     const tests = {
       internal: RegExp('^/').test(href),
+      mailto: RegExp('^mailto\:').test(href),
       samepage: RegExp('^#').test(href),
-      external_https: RegExp('https\:\/\/').test(href),
-      external_http: RegExp('http\:\/\/').test(href),
+      external_https: RegExp('^https\:\/\/').test(href),
+      external_http: RegExp('^http\:\/\/').test(href),
     }
 
     let styles = []
@@ -31,6 +32,13 @@ mixin link(options={})
       title = set_title(title, "anchor link")
 
       styles.push(`color:${options.color||"default"}`)
+      if (options.stamp) styles.push("text:stamp")
+
+    } else if (tests.mailto) {
+
+      title = set_title(title, "e-mail link")
+
+      styles.push(`color:${options.color||"blue"}`)
       if (options.stamp) styles.push("text:stamp")
 
     } else if (tests.external_https) {

@@ -1,5 +1,39 @@
 @charset "utf-8";
 
+.text {
+  &\:center {
+    text-align: center;
+  }
+
+  &\:narrow {
+    letter-spacing: -0.025ex;
+  }
+
+  &\:bold {
+    font-weight: 900;
+  }
+
+  &\:small {
+    font-size: 1em;
+  }
+
+  &\:smaller {
+    font-size: smaller;
+  }
+
+  &\:medium {
+    font-size: 1.35em;
+  }
+
+  &\:large {
+    font-size: 2em;
+  }
+}
+
+.text-padding {
+  padding: var(--grid-column-gap) calc(var(--grid-column-gap) * 2);
+}
+
 .decoration {
   &\:double-line-through {
     text-decoration: double line-through !important;
@@ -8,9 +42,16 @@
 
 mark,
 .text\:stamp {
+  --spacing: 0.1em;
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: var(--spacing);
+  padding-left: var(--spacing);
+
   color: var(--theme-background_color);
   background-color: var(--color-gray);
-  background-image: url("/assets/images/noisy.png");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPBAMAAAG+/7jvAAAAElBMVEV/f3////9/f39/f39/f39/f3/LpZocAAAABnRSTlMAAA0gQIC5QFWJAAAAa0lEQVQIWy2KMRLCMAwEV8HpJZv08ZgHhCK9Ez7gMP7/WxCGQjOr28UoGJUbvE/OF8sDuRCl5ZpJLTVCDAnZpzv+rRy7bEzBRT7Wiu/K9RP2F/HZzU8pc41bR5mrDaZLWZwBF19mxB6N2Fk/tBMRDluLEV4AAAAASUVORK5CYII=");
+  background-clip: padding-box;
 
   &.color\:black {
     background-color: var(--color-black);
