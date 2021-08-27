@@ -1,0 +1,13 @@
+.copyright {
+  & svg {
+    max-width: 7.7rem;
+  }
+
+  & > span {
+    display: block;
+    margin-top: var(--grid-column-gap);
+    font-weight: 100;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+}

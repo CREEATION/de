@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+.display {
+  &\:inline {
+    display: inline;
+  }
+  &\:inline-block {
+    display: inline-block;
+  }
+  &\:block {
+    display: block;
+  }
+  &\:flex {
+    display: flex;
+  }
+  &\:inline-flex {
+    display: inline-flex;
+  }
+  &\:grid {
+    display: grid;
+  }
+  &\:inline-grid {
+    display: inline-grid;
+  }
+  &\:table {
+    display: table;
+  }
+  &\:table-row {
+    display: table-row;
+  }
+  &\:table-cell {
+    display: table-cell;
+  }
+  &\:table-caption {
+    display: table-caption;
+  }
+  &\:none {
+    display: none;
+  }
+  &\:initial {
+    display: initial;
+  }
+  &\:inherit {
+    display: inherit;
+  }
+  &\:unset {
+    display: unset;
+  }
+}

@@ -1,147 +1,71 @@
 "use strict"
 ;(function (document) {
-  const options = {
-    debug: false,
-    verbose: true,
-  }
+  //- theme switcher
+  const themeSelector = "input[name=color_scheme]"
+  const colorSchemes = document
+    .querySelector('meta[name="color-scheme"]')
+    .content.split(" ")
+  const defaultTheme = colorSchemes[0]
+  const currentTheme = () => localStorage.getItem("theme") || defaultTheme
+  const otherTheme = () =>
+    colorSchemes.find((theme) => theme !== currentTheme())
 
-  // custom logger
-  const msg = (type, ...args) => {
-    if (type.toLowerCase() !== "debug" && options.verbose) {
-      console[type](`> ${[...args]}`)
-    } else if (options.debug) {
-      console.warn(`[debug]`, ...args)
-    }
-  }
+  let root = document.querySelector(":root")
 
-  const themeSwitch = document.querySelector(`#theme-switch`)
-  const themeSwitches = themeSwitch.querySelectorAll(`[data-theme]`)
-  const themeSwitchToggles = themeSwitch.querySelectorAll(`[type="radio"]`)
-  const themeRemember = themeSwitch.querySelector(`[type="checkbox"]`)
-  const themes = []
+  function updateTheme(theme, initial = false, cb) {
+    let oldTheme = currentTheme()
 
-  function setCurrentTheme(themeId) {
-    msg("debug", `called setCurrentTheme(themeId: "${themeId}")`)
+    localStorage.setItem("theme", theme)
 
-    themeSwitch.dataset.currentTheme = themeId
-
-    if (
-      localStorage.getItem("theme") &&
-      localStorage.getItem("theme") !== themeId
-    ) {
-      // save theme in local storage if not already saved
-      attemptSaveTheme()
-    } else if (
-      localStorage.getItem("theme") &&
-      localStorage.getItem("theme") == themeId
-    ) {
-      msg("info", `loading saved theme "${themeId}" from local storage`)
-    } else {
-      msg("info", `loading theme "${themeId}"`)
+    if (initial) {
+      document.querySelector(`${themeSelector}[value=${theme}]`).checked = true
     }
 
-    return themeId
+    root.classList.replace(
+      `theme\:${!initial ? oldTheme : defaultTheme}`,
+      `theme\:${theme}`,
+    )
+
+    document
+      .querySelector(`#toggle-color_scheme-${oldTheme}`)
+      .removeAttribute("hidden")
+    document
+      .querySelector(`#toggle-color_scheme-${theme}`)
+      .setAttribute("hidden", true)
+
+    if (cb) cb(theme, oldTheme, initial)
   }
 
-  function attemptSaveTheme(themeId) {
-    themeId = themeId || themeSwitch.dataset.currentTheme
+  document
+    .querySelector(`#toggle-color_scheme-${otherTheme()}`)
+    .removeAttribute("hidden")
 
-    msg("debug", `called attemptSaveTheme(themeId: "${themeId}")`)
-
-    if (themeRemember.checked) {
-      localStorage.setItem("theme", themeId)
-      msg("info", `saved theme "${themeId}" to local storage`)
-    } else {
-      if (localStorage.getItem("theme")) {
-        localStorage.removeItem("theme")
-        msg("info", `cleared local storage for "theme"`)
-      } else {
-        msg("debug", `didn't save theme "${themeId}" to local storage`)
-      }
-    }
-  }
-
-  function applyTheme(themeId) {
-    msg("debug", `called applyTheme(themeId: "${themeId}")`)
-
-    if (!themes.includes(themeId)) {
-      msg("debug", `theme "${themeId}" doesn't exist`)
-
-      // purge local storage for "theme"
-      localStorage.removeItem("theme")
-
-      applyTheme(themeSwitch.dataset.defaultTheme)
-
-      return null
-    }
-
-    setCurrentTheme(themeId)
-
-    // apply theme class to document
-    document.firstElementChild.classList.remove(...themes)
-    document.firstElementChild.classList.add(themeId)
-
-    // set appropriate radio input
-    themeSwitch.querySelector(`[data-theme="${themeId}"] input`).checked = true
-
-    return themeId
-  }
-
-  // register themes
-  for (let i = 0; i < themeSwitches.length; i++) {
-    const themeSwitchToggle = themeSwitchToggles[i]
-    const themeSwitchElement = themeSwitches[i]
-    const themeId = themeSwitchElement.dataset.theme
-
-    themes.push(themeId)
-
-    themeSwitchToggle.addEventListener("change", function (e) {
-      msg("debug", `theme selected: ${themeId}`)
-
-      applyTheme(themeId)
+  if (currentTheme() !== defaultTheme) {
+    updateTheme(currentTheme(), true, (theme, oldTheme, initial) => {
+      console.info(
+        `Color Scheme set to previously saved "${theme}"`,
+        `default: "${defaultTheme}"`,
+        `initial: "${initial}"`,
+      )
+    })
+  } else {
+    updateTheme(currentTheme(), true, (theme, oldTheme, initial) => {
+      console.info(
+        `Color Scheme set to default "${defaultTheme}"`,
+        `initial: "${initial}"`,
+      )
     })
   }
 
-  // if "themes" doesn't contain a valid default theme,
-  // set default theme to first registered theme
-  if (!themes.includes(themeSwitch.dataset.defaultTheme)) {
-    themeSwitch.dataset.defaultTheme = themes[0]
-  }
-
-  // check if user saved theme selection and apply theme
-  if (localStorage.getItem("theme") && localStorage.getItem("theme").length) {
-    msg("debug", `local storage for "theme" found`)
-
-    themeRemember.checked = true
-
-    applyTheme(localStorage.getItem("theme"))
-  } else {
-    msg("debug", `local storage for "theme" disabled`)
-
-    // otherwise, apply default theme
-    applyTheme(themeSwitch.dataset.defaultTheme)
-  }
-
-  // form reset event
-  themeSwitch.addEventListener("reset", function (e) {
-    msg("debug", `theme switcher form reset`)
-
-    // reset everything
-    setTimeout(() => {
-      themeRemember.dispatchEvent(new Event("change"))
-      themeSwitches.forEach((element, i) => {
-        if (element.dataset.theme == themeSwitch.dataset.defaultTheme) {
-          themeSwitchToggles[i].dispatchEvent(new Event("change"))
-        }
+  document.querySelectorAll(themeSelector).forEach((input) => {
+    input.addEventListener("change", (event) => {
+      updateTheme(event.target.value, false, (theme, oldTheme, initial) => {
+        console.info(
+          `Changed Color Scheme from "${oldTheme}" to "${theme}"`,
+          `default: "${defaultTheme}"`,
+          `initial: "${initial}"`,
+        )
       })
     })
-  })
-
-  // "remember" checkbox change event
-  themeRemember.addEventListener("change", function (e) {
-    msg("debug", `checkbox "remember" changed to: ${this.checked}`)
-
-    // attempt to save current theme to local storage
-    attemptSaveTheme()
   })
 })(document)

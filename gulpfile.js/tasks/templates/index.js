@@ -1,6 +1,10 @@
 "use strict"
 
-const { task_finalize, utils_config } = require(`${process.cwd()}/lib`)
+const {
+  task_finalize,
+  utils_config,
+  utils_browser_sync_instance,
+} = require(`${process.cwd()}/lib`)
 const { parallel, series } = require("gulp")
 const { magenta } = require("ansi-colors")
 
@@ -9,8 +13,12 @@ const default_lang_string = `default language: ${magenta(default_lang)}`
 
 module.exports = task_finalize(
   series(
-    parallel(require("./compile"), require("./localize").clean),
-    require("./localize")
+    require("../styles"),
+    require("./compile"),
+    require("./optimize"),
+    require("./inject"),
+    // parallel(require("./compile"), require("./localize").clean),
+    // require("./localize"),
   ),
   {
     metadata: {
@@ -25,7 +33,7 @@ module.exports = task_finalize(
         },
       },
       require("./compile").config.options,
-      require("./localize").config.options
+      // require("./localize").config.options,
     ),
-  }
+  },
 )

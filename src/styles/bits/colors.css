@@ -4,18 +4,25 @@
 
 :root {
   --color-black: #261f1f;
+
   --color-gray: #b5b5b5;
+  --color-gray_light: #e6e6e6;
   --color-grey: var(--color-gray);
+  --color-grey_light: var(--color-gray_light);
+
   --color-white: #f1f1f1;
 
   --color-red: #fa6161;
   --color-red_a11y: #4d0000;
+  --color-red_light: #fa9292;
 
   --color-green: #77cc25;
   --color-green_a11y: #254d00;
+  --color-green_light: #77fd56;
 
   --color-blue: #25ddcc;
   --color-blue_a11y: #004d45;
+  --color-blue_light: #25fefd;
 
   --color-primary: var(--color-green);
   --color-secondary: var(--color-black);
@@ -24,84 +31,85 @@
   --theme-background_color: var(--color-white);
 }
 
-.color {
+@define-mixin color $name {
+  &\:$(name) {
+    color: var(--color-$(name));
+  }
+}
+
+@define-mixin colors {
   &\:default {
     color: currentColor;
   }
 
-  &\:black {
-    color: var(--color-black);
-  }
+  @mixin color black;
+  @mixin color gray;
+  @mixin color gray_light;
+  @mixin color grey;
+  @mixin color grey_light;
+  @mixin color white;
+  @mixin color red;
+  @mixin color red_a11y;
+  @mixin color red_light;
+  @mixin color green;
+  @mixin color green_a11y;
+  @mixin color green_light;
+  @mixin color blue;
+  @mixin color blue_a11y;
+  @mixin color blue_light;
+}
 
-  &\:gray,
-  &\:grey {
-    color: var(--color-gray);
-  }
-
-  &\:white {
-    color: var(--color-white);
-  }
-
-  &\:red {
-    color: var(--color-red);
-  }
-
-  &\:red_a11y {
-    color: var(--color-red_a11y);
-  }
-
-  &\:green {
-    color: var(--color-green);
-  }
-
-  &\:green_a11y {
-    color: var(--color-green_a11y);
-  }
-
-  &\:blue {
-    color: var(--color-blue);
-  }
-
-  &\:blue_a11y {
-    color: var(--color-blue_a11y);
+@define-mixin bg-color $name {
+  &\:$(name) {
+    background-color: var(--color-$(name));
   }
 }
 
-.bg-color {
-  &\:black {
-    background-color: var(--color-black);
+@define-mixin bg-colors $name {
+  &\:default {
+    background-color: var(--theme-background_color);
   }
 
-  &\:gray,
-  &\:grey {
-    background-color: var(--color-gray);
+  @mixin bg-color black;
+  @mixin bg-color gray;
+  @mixin bg-color gray_light;
+  @mixin bg-color grey;
+  @mixin bg-color grey_light;
+  @mixin bg-color white;
+  @mixin bg-color red;
+  @mixin bg-color red_a11y;
+  @mixin bg-color red_light;
+  @mixin bg-color green;
+  @mixin bg-color green_a11y;
+  @mixin bg-color green_light;
+  @mixin bg-color blue;
+  @mixin bg-color blue_a11y;
+  @mixin bg-color blue_light;
+}
+
+:root {
+  &.color,
+  & .color {
+    @mixin colors;
   }
 
-  &\:white {
-    background-color: var(--color-white);
+  &.bg-color,
+  & .bg-color {
+    @mixin bg-colors;
+  }
+}
+
+:root.theme\:dark,
+:root.theme\:dark .theme\:dark,
+:root.theme\:light,
+:root.theme\:light .theme\:light,
+:root.theme\:system,
+:root.theme\:system .theme\:system {
+  &\/color {
+    @mixin colors;
   }
 
-  &\:red {
-    background-color: var(--color-red);
-  }
-
-  &\:red_a11y {
-    background-color: var(--color-red_a11y);
-  }
-
-  &\:green {
-    background-color: var(--color-green);
-  }
-
-  &\:green_a11y {
-    background-color: var(--color-green_a11y);
-  }
-
-  &\:blue {
-    background-color: var(--color-blue);
-  }
-
-  &\:blue_a11y {
-    background-color: var(--color-blue_a11y);
+  &\/bg-color {
+    @mixin bg-colors;
   }
 }

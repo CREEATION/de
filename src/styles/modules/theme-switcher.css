@@ -1,0 +1,8 @@
+#theme-switcher {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.5rem;
+  font-size: 3rem;
+  border: none;
+  user-select: none;
+}

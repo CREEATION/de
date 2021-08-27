@@ -54,7 +54,7 @@ module.exports = task_finalize(
           {
             text: `)`,
             color: "gray",
-          }
+          },
         )
 
         utils_log(
@@ -73,9 +73,9 @@ module.exports = task_finalize(
               color: "gray",
               text: ", ",
             },
-          }
+          },
         )
-      }
+      },
     )
   },
   {
@@ -84,5 +84,5 @@ module.exports = task_finalize(
       description: "initializes a browsersync instance & all tasks watchers",
       flags: undefined,
     },
-  }
+  },
 )

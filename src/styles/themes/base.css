@@ -1,0 +1,54 @@
+:root {
+  --grid-column-gap: 1rem;
+
+  box-sizing: content-box;
+  max-width: 50rem;
+  margin-right: auto;
+  margin-left: auto;
+  overflow-y: scroll;
+
+  font-weight: 900;
+  font-size: 1em;
+  font-family: "Source Sans Pro", "Tahoma", "Trebuchet MS", sans-serif;
+  /* text-transform: lowercase; */
+}
+
+body {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media screen and (min-width: 50rem) {
+    align-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+}
+
+#page {
+  position: relative;
+  flex-basis: 0;
+  flex-grow: 1;
+  min-width: 75%;
+  /* background: purple; */
+}
+
+#page-header {
+  background: var(--color-blue_a11y);
+}
+
+#page-main {
+  /* background: green; */
+
+  @media screen and (max-width: 40rem) {
+    font-size: 0.75rem;
+  }
+
+  @media screen and (max-width: 20rem) {
+    font-size: 0.65rem;
+  }
+}
+
+#page-footer {
+  flex-grow: 1;
+  /* background: var(--color-blue_a11y); */
+}

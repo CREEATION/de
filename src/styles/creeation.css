@@ -1,12 +1,14 @@
 @charset "utf-8";
 
 /* bits */
-@import "./bits/box-display.css";
+@import "./bits/borders.css";
 @import "./bits/colors.css";
 @import "./bits/cursor.css";
+@import "./bits/display.css";
 @import "./bits/filters.css";
 @import "./bits/fonts.css";
 @import "./bits/links.css";
+@import "./bits/logo.css";
 @import "./bits/paragraphs.css";
 @import "./bits/reset.css";
 @import "./bits/screenreader.css";
@@ -14,12 +16,23 @@
 @import "./bits/text.css";
 @import "./bits/transition.css";
 
+/* elements */
+@import "./elements/heading.css";
+@import "./elements/image.css";
+@import "./elements/list.css";
+
 /* modules */
-/* @import "./modules/???.css"; */
+@import "./modules/copyright.css";
+@import "./modules/introduction.css";
+@import "./modules/theme-switcher.css";
 
 /* sections */
 @import "./sections/body.css";
+@import "./sections/header.css";
+@import "./sections/main.css";
+@import "./sections/footer.css";
 
 /* themes */
+@import "./themes/base.css";
 @import "./themes/dark.css";
 @import "./themes/light.css";

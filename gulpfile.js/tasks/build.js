@@ -1,15 +1,17 @@
 "use strict"
 
-const { parallel } = require("gulp")
+const { parallel, series } = require("gulp")
 const { task_finalize } = require(`${process.cwd()}/lib`)
 
 module.exports = task_finalize(
-  parallel(
+  series(
+    parallel(
+      require("./assets/images"),
+      require("./assets/fonts"),
+      require("./scripts"),
+      require("./styles"),
+    ),
     require("./templates"),
-    require("./assets/images"),
-    require("./scripts"),
-    require("./styles"),
-    require("./assets/fonts")
   ),
   {
     metadata: {
@@ -21,9 +23,6 @@ module.exports = task_finalize(
       clean: {
         patterns: ["dist/**/*", "!dist", "!dist/.gitkeep"],
       },
-      watch: {
-        patterns: ["src/**/*"],
-      },
     },
-  }
+  },
 )

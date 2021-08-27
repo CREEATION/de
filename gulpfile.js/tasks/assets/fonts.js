@@ -8,16 +8,15 @@ module.exports = task_finalize(
 
     require("pump")(
       [
-        src("src/assets/fonts/**/*"),
+        src("src/assets/fonts/**/*.{woff,woff2,txt}"),
         dest("dist/assets/fonts"),
-        require("browser-sync").stream(),
       ],
-      cb
+      cb,
     )
   },
   {
     metadata: {
-      displayName: "fonts",
+      displayName: "assets:fonts",
       description: "copy (& optimize?) font files",
       flags: undefined,
     },
@@ -25,6 +24,9 @@ module.exports = task_finalize(
       clean: {
         patterns: ["dist/assets/fonts/"],
       },
+      watch: {
+        patterns: ["src/assets/fonts/**/*"],
+      },
     },
-  }
+  },
 )
