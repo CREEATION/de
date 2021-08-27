@@ -19,8 +19,10 @@
 /* elements */
 @import "./elements/heading.css";
 @import "./elements/image.css";
+@import "./elements/list.css";
 
 /* modules */
+@import "./modules/copyright.css";
 @import "./modules/introduction.css";
 @import "./modules/copyright.css";
 

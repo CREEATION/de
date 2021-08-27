@@ -1,10 +1,14 @@
 @charset "utf-8";
 
 p {
-  padding: var(--grid-column-gap) calc(var(--grid-column-gap) * 2);
+  padding: var(--grid-column-gap);
   font-weight: normal;
   font-size: 2em;
   line-height: 1.5;
+
+  @media screen and (min-width: 20rem) {
+    padding: var(--grid-column-gap) calc(var(--grid-column-gap) * 2);
+  }
 }
 
 .glue {
@@ -21,9 +25,14 @@ p {
 
 .round {
   --radius: 0.3rem;
-  border-radius: var(--radius) var(--radius) 0 0;
 
-  & + .round {
-    border-radius: 0 0 var(--radius) var(--radius);
+  border-radius: var(--radius);
+
+  &.glue\:next {
+    & + .round {
+      border-radius: 0 0 var(--radius) var(--radius);
+    }
+
+    border-radius: var(--radius) var(--radius) 0 0;
   }
 }

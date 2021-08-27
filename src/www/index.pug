@@ -11,7 +11,7 @@ prepend page-template
 
     //- overwrite defaults
     helpers.data(template, {
-      page_title: "UX-driven Web Development by Thomas Creeten | CREEATION.de",
+      page_title: "CREEATION.de",
       profiles: {
         enable: false,
         data: [
@@ -31,26 +31,28 @@ prepend page-template
 
     helpers.options(template, {
       css: true,
-      color_schemes: ["dark"].join(" ")
+      color_schemes: ["dark", "light"].join(" ")
     })
 
 mixin page-header()
   header#page-header
-    .introduction
+    .introduction(class="color:white theme:light/color:black theme:light/bg-color:white theme:dark/border:8/green theme:light/border:8/black")
       div
         h1
-          span(class="color:white") Hello! 🐢
-          |
-          |
-          span(class="color:green") I'm Thomas
+          span Hello! 🐢
+          | &nbsp;
+          span(class="color:green theme:light/color:green_a11y") I'm Thomas
 
-        p(class="text:large color:white")
-          span I push #[+link(href="https://github.com/creeation") code]
-          |
-          |
-          span &amp; love #[+link({ color: "red" })(href="https://www.a11yproject.com") #a11y].
+        p(class="text:large")
+          span I push #[+link(href="https://github.com/creeation", class="theme:dark/color:black theme:light/color:black") code]
+          | &nbsp;
+          span(class="color:green theme:light/color:green_a11y") &amp;
+          | &nbsp;
+          span play #[+link({ color: "red",  })(href="https://steamcommunity.com/id/int_row", class="theme:dark/color:black theme:light/color:black") games]
 
-      img(src="../../dist/assets/images/thomas_creeten.png", class="image-rendering:pixelated image-align:center", width="170", height="170", alt="Pixel-Art Portrait of Thomas Creeten", inline)
+      div(class="theme:light/bg-color:black")
+        div
+          img(src="../../dist/assets/images/thomas_creeten.png", class="image-rendering:pixelated image-align:center", width="170", height="170", alt="Pixel-Art Portrait of Thomas Creeten", inline)
 
 mixin page-main()
   main#page-main
@@ -70,22 +72,14 @@ mixin page-main()
 
 mixin page-footer()
   footer#page-footer
-    if helpers.data(template, "profiles").enable
-      h2 Profiles
-      ul
-        each profile in helpers.data(template, "profiles").data
-          li: +link(href=profile.url)= profile.label
-
-
     .copyright
       img(src="../assets/images/creeation-logo.svg", class="logo:adapt image-align:center", alt="CREEATION Logo", title="CREEATION", inline)
-      span(class="font:monospace") &copy; #{new Date().getFullYear()} #{data.info.author.name}
+      span(class="font:monospace") &copy; #{data.info.author.name}
 
 
 block page-body
   #page
     +page-header()
-    +page-main()
+    //- +page-main()
 
   +page-footer()
-

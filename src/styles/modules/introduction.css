@@ -3,9 +3,9 @@
   flex-wrap: wrap;
   align-items: center;
 
-  & > div {
+  & > div:first-child {
     flex-basis: 0;
-    flex-grow: 999;
+    flex-grow: 1;
     min-width: 69%;
   }
 
@@ -30,9 +30,15 @@
     }
   }
 
-  & img {
+  & > div:last-child {
+    position: relative;
     flex-basis: 170px;
     flex-grow: 1;
-    max-width: 15rem;
+
+    & > div {
+      position: relative;
+      max-width: 15rem;
+      margin: 0 auto;
+    }
   }
 }
