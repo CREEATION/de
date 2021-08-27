@@ -24,7 +24,7 @@
 /* modules */
 @import "./modules/copyright.css";
 @import "./modules/introduction.css";
-@import "./modules/copyright.css";
+@import "./modules/theme-switcher.css";
 
 /* sections */
 @import "./sections/body.css";
@@ -35,4 +35,4 @@
 /* themes */
 @import "./themes/base.css";
 @import "./themes/dark.css";
-/* @import "./themes/light.css"; */
+@import "./themes/light.css";

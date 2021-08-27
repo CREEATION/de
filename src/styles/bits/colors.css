@@ -99,11 +99,17 @@
   }
 }
 
-  &\:blue {
-    background-color: var(--color-blue);
+:root.theme\:dark,
+:root.theme\:dark .theme\:dark,
+:root.theme\:light,
+:root.theme\:light .theme\:light,
+:root.theme\:system,
+:root.theme\:system .theme\:system {
+  &\/color {
+    @mixin colors;
   }
 
-  &\:blue_a11y {
-    background-color: var(--color-blue_a11y);
+  &\/bg-color {
+    @mixin bg-colors;
   }
 }

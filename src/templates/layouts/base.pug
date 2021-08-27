@@ -18,7 +18,7 @@ block page-mixins
 block page-template
   //- template architecture
   doctype html
-  html(lang="en")
+  html(lang="en", class="theme:dark color:white theme:light/color:black")
     head
       meta(charset="utf-8")
       meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -44,3 +44,4 @@ block page-template
       block page-pre-body
       block page-body
       block page-post-body
+        script(src="../../dist/assets/js/theme-switcher.min.js" inline)

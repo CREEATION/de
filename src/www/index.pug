@@ -53,6 +53,7 @@ mixin page-header()
       div(class="theme:light/bg-color:black")
         div
           img(src="../../dist/assets/images/thomas_creeten.png", class="image-rendering:pixelated image-align:center", width="170", height="170", alt="Pixel-Art Portrait of Thomas Creeten", inline)
+          +theme-switcher({ themes: helpers.options(template, "color_schemes").split(" ") })
 
 mixin page-main()
   main#page-main

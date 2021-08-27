@@ -48,3 +48,26 @@
     @mixin borders 16;
   }
 }
+
+:root.theme\:dark,
+:root.theme\:dark .theme\:dark,
+:root.theme\:light,
+:root.theme\:light .theme\:light,
+:root.theme\:system,
+:root.theme\:system .theme\:system {
+  &\/border {
+    @mixin borders;
+    @mixin borders 2;
+    @mixin borders 3;
+    @mixin borders 4;
+    @mixin borders 5;
+    @mixin borders 6;
+    @mixin borders 7;
+    @mixin borders 8;
+    @mixin borders 9;
+    @mixin borders 10;
+    @mixin borders 12;
+    @mixin borders 14;
+    @mixin borders 16;
+  }
+}
