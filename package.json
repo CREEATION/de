@@ -43,6 +43,8 @@
     "postcss-functions": "^3.0.0",
     "postcss-hidden": "^1.0.7",
     "postcss-import": "^12.0.1",
+    "postcss-mixins": "^8.1.0",
+    "postcss-nested": "^5.0.6",
     "postcss-preset-env": "^6.7.0",
     "postcss-reporter": "^7.0.1",
     "prettier-plugin-style-order": "^0.2.2",

@@ -1,9 +1,10 @@
 @charset "utf-8";
 
 /* bits */
-@import "./bits/display.css";
+@import "./bits/borders.css";
 @import "./bits/colors.css";
 @import "./bits/cursor.css";
+@import "./bits/display.css";
 @import "./bits/filters.css";
 @import "./bits/fonts.css";
 @import "./bits/links.css";

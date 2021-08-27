@@ -1,6 +1,10 @@
 @charset "utf-8";
 
 .cursor {
+  &\:pointer {
+    cursor: pointer;
+  }
+
   &\:alias {
     cursor: alias;
   }

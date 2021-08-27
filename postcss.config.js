@@ -3,6 +3,9 @@ module.exports = {
     // https://www.npmjs.com/package/postcss-import
     require("postcss-import")(),
 
+    // https://www.npmjs.com/package/postcss-mixins
+    require("postcss-mixins")(),
+
     // https://www.npmjs.com/package/postcss-functions
     require("postcss-functions")({
       functions: require("./postcss.functions"),
@@ -23,6 +26,9 @@ module.exports = {
 
     // https://www.npmjs.com/package/postcss-calc
     require("postcss-calc")(),
+
+    // https://www.npmjs.com/package/postcss-nested
+    require("postcss-nested")(),
 
     // https://www.npmjs.com/package/postcss-reporter
     require("postcss-reporter")({

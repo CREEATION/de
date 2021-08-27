@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+@define-mixin border $size: 1, $color {
+  &\:$(size),
+  &\:$(size)\/$(color) {
+    /* prettier-ignore */
+    box-shadow: 0 0 0 $(size)px var(--color-$(color)) inset;
+  }
+}
+
+@define-mixin borders $size: 1 {
+  &\:default {
+    box-shadow: 0 0 0 1px var(currentColor) inset;
+  }
+
+  @mixin border $(size), black;
+  @mixin border $(size), gray;
+  @mixin border $(size), gray_light;
+  @mixin border $(size), grey;
+  @mixin border $(size), grey_light;
+  @mixin border $(size), white;
+  @mixin border $(size), red;
+  @mixin border $(size), red_a11y;
+  @mixin border $(size), red_light;
+  @mixin border $(size), green;
+  @mixin border $(size), green_a11y;
+  @mixin border $(size), green_light;
+  @mixin border $(size), blue;
+  @mixin border $(size), blue_a11y;
+  @mixin border $(size), blue_light;
+}
+
+:root {
+  &.border,
+  & .border {
+    @mixin borders;
+    @mixin borders 2;
+    @mixin borders 3;
+    @mixin borders 4;
+    @mixin borders 5;
+    @mixin borders 6;
+    @mixin borders 7;
+    @mixin borders 8;
+    @mixin borders 9;
+    @mixin borders 10;
+    @mixin borders 12;
+    @mixin borders 14;
+    @mixin borders 16;
+  }
+}
