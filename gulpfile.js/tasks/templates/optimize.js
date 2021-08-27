@@ -26,7 +26,7 @@ module.exports = task_finalize(
         //   },
         //   css: ["dist/assets/css/**/*.css"],
         // }),
-        minifier({ collapseWhitespace: true, minifyCSS: true }),
+        minifier({ collapseWhitespace: true, minifyCSS: true, minifyJS: true }),
         dest("dist"),
       ],
       cb,

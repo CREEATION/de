@@ -20,7 +20,9 @@ module.exports = task_finalize(
         sourcemaps.init(),
         beautifier(),
         dest("dist/assets/js"),
-        terser(),
+        terser({
+          compress: true,
+        }),
         rename((path) => {
           path.extname = ".min.js"
 
