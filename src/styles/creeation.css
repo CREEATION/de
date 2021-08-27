@@ -1,12 +1,25 @@
-@import url('modern-css-reset');
+@charset "utf-8";
 
-@import '_base';
-@import '_grid';
-@import '_debug';
+/* bits */
+@import "./bits/box-display.css";
+@import "./bits/colors.css";
+@import "./bits/cursor.css";
+@import "./bits/filters.css";
+@import "./bits/fonts.css";
+@import "./bits/links.css";
+@import "./bits/paragraphs.css";
+@import "./bits/reset.css";
+@import "./bits/screenreader.css";
+@import "./bits/tables.css";
+@import "./bits/text.css";
+@import "./bits/transition.css";
 
-@import 'modules/body';
+/* modules */
+/* @import "./modules/???.css"; */
 
-@import 'modules/header';
-@import 'modules/profile';
-@import 'modules/content';
-@import 'modules/footer';
+/* sections */
+@import "./sections/body.css";
+
+/* themes */
+@import "./themes/dark.css";
+@import "./themes/light.css";

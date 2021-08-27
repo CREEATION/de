@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+.decoration {
+  &\:double-line-through {
+    text-decoration: double line-through !important;
+  }
+}
+
+mark,
+.text\:stamp {
+  color: var(--theme-background_color);
+  background-color: var(--color-gray);
+  background-image: url("/assets/images/noisy.png");
+
+  &.color\:black {
+    background-color: var(--color-black);
+  }
+
+  &.color\:white {
+    background-color: var(--color-white);
+  }
+
+  &.color\:gray,
+  &.color\:grey {
+    background-color: var(--color-gray);
+  }
+
+  &.color\:red {
+    background-color: var(--color-red);
+  }
+
+  &.color\:red_a11y {
+    background-color: var(--color-red_a11y);
+  }
+
+  &.color\:green {
+    background-color: var(--color-green);
+  }
+
+  &.color\:green_a11y {
+    background-color: var(--color-green_a11y);
+  }
+
+  &.color\:blue {
+    background-color: var(--color-blue);
+  }
+
+  &.color\:blue_a11y {
+    background-color: var(--color-blue_a11y);
+  }
+}

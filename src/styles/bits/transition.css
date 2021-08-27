@@ -1,0 +1,11 @@
+:root {
+  --transition-speed: 0.124s;
+}
+
+.transition {
+  transition: all var(--transition-speed) ease-in-out;
+}
+
+.transition-color {
+  transition: color var(--transition-speed) ease-in-out;
+}

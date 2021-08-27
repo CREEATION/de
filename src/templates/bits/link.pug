@@ -1,0 +1,150 @@
+mixin link(options={})
+  -
+    options = Object.assign({
+      color: undefined,
+      context: true,
+      display: "inline",
+      stamp: true,
+    }, options)
+
+    const href = attributes.href
+    const tests = {
+      internal: RegExp('^/').test(href),
+      samepage: RegExp('^#').test(href),
+      external_https: RegExp('https\:\/\/').test(href),
+      external_http: RegExp('http\:\/\/').test(href),
+    }
+
+    let styles = []
+    let title = href
+    let tabindex = !href ? undefined : attributes.tabindex|"0"
+
+    title = title||undefined
+
+    const set_title = (title, description) => {
+      return [description, title].filter(Boolean).join(":\n")
+    }
+
+    //- todo: prettify
+    if (tests.samepage) {
+
+      title = set_title(title, "anchor link")
+
+      styles.push(`color:${options.color||"default"}`)
+      if (options.stamp) styles.push("text:stamp")
+
+    } else if (tests.external_https) {
+
+      title = set_title(title, "external link")
+
+      styles.push(`color:${options.color||"blue"}`)
+      if (options.stamp) styles.push("text:stamp")
+
+    } else if (tests.external_http) {
+
+      title = set_title(title, "unsecure external link")
+
+      styles.push(`color:${options.color||"blue"}`)
+      if (options.stamp) styles.push("text:stamp")
+      styles.push("decoration:double-line-through")
+      styles.push("cursor:not-allowed")
+
+    } else if (tests.internal)  {
+
+      title = set_title(title, "internal link")
+
+      styles.push(`color:${options.color||"green"}`)
+
+    } else {
+
+      title = set_title(title, "unsecure/invalid link")
+
+      styles.push(`color:${options.color||"red"}`)
+      styles.push("decoration:double-line-through")
+      styles.push("cursor:not-allowed")
+
+    }
+
+    // only allow valid link types
+    switch (options.display) {
+      case "inline": break;
+      case "block": break;
+      case "inline-block": break;
+      default: throw `error: link type "${options.display}" doesn't exist! (use "inline" (default), "block" or "inline-block")`;
+    }
+
+    options.display = options.display == "inline" ? undefined : options.display
+
+  a(tabindex=tabindex, class=[options.display, ...styles], title=title)&attributes(attributes)
+    if block
+      block
+
+//- examples overview
+mixin example-link(options={})
+  -
+    options = Object.assign({
+      color: undefined,
+      display: "inline",
+    }, options)
+
+    const type = "Link"
+    let name
+
+    switch (options.display) {
+      case "inline":
+        name = "Inline Link";
+        break;
+      case "block":
+        name = "Block Link";
+        break;
+      case "inline-block":
+        name = "Inline-Block Link";
+        break;
+      default:
+        throw `error: link type "${options.display}" doesn't exist!`;
+    }
+
+    const element = {
+      name
+    }
+
+    const examples = [
+      {
+        name: `Internal`,
+        href: "/index.html",
+      },
+      {
+        name: `External (HTTPS)`,
+        href: "https://duckduckgo.com",
+      },
+      {
+        name: `External (HTTP)`,
+        href: "http://duckduckgo.com",
+        invalid: true
+      },
+      {
+        name: `Same-Page`,
+        href: "#0",
+        notes: `anchors`
+      },
+      {
+        name: `Invalid/Undefined`,
+        invalid: true
+      }
+    ]
+
+  h3= name
+  table
+    thead
+      tr
+        th: code valid
+        th: code types
+        th: code notes
+    tbody
+      each example in examples
+        tr
+          td= example.invalid ? `` : `✅`
+          td: +link(options)(href=example.href)= example.name
+          td
+            if example.notes
+              small: code= example.notes

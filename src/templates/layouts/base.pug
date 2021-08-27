@@ -1,0 +1,50 @@
+-
+  // template options
+  let template = {
+    data: {
+      page_title: "Untitled Page"
+    }
+  }
+
+block page-mixins
+  include ../bits/index
+  include ../elements/index
+  include ../modules/index
+  include ../sections/index
+
+block page-template
+  //- template architecture
+  doctype html
+  html(lang="en")
+    head
+      meta(charset="UTF-8")
+      meta(name="viewport", content="width=device-width, initial-scale=1.0")
+      meta(http-equiv="X-UA-Compatible", content="ie=edge")
+      meta(name="color-scheme", content="dark light")
+
+      block page-title
+        title= helpers.data(template, "page_title")
+
+      block page-css
+        block page-specific-css
+        block page-global-css
+          link(rel="stylesheet", href="/assets/css/creeation.min.css")
+
+      block page-preload-scripts
+    body
+      block page-pre-body-content
+
+      header.page-header
+        block page-header
+          //- h1= helpers.data(template, "page_title")
+
+      main.page-main
+        block page-main
+          p Page Content would go here if there's any.
+
+      footer.page-footer
+        block page-footer
+        small &copy; #{new Date().getFullYear()}
+        span #{data.info.displayName} / #{data.info.author.name}
+
+      block page-after-body-content

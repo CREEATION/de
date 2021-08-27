@@ -1,0 +1,26 @@
+//- layout
+extends /src/templates/layouts/base
+
+//- modify/set template data, options and mixins
+prepend page-template
+  -
+    //- show defaults:
+    //- console.log(helpers.data(template), helpers.options(template))
+
+    helpers.data(template, {
+      page_title: "System Architecture Overview | CREEATION.de",
+    })
+
+    helpers.options(template, {
+      screenreader_intro: false,
+    })
+
+//- layout blocks
+block page-main
+  section: +overview-bits
+  section: +overview-elements(false)
+  section: +overview-modules(false)
+  section: +overview-sections(false)
+
+block page-footer
+  img(src="/assets/images/creeation-logo.svg", alt="CREEATION Logo", title="CREEATION")

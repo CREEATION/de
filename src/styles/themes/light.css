@@ -1,0 +1,27 @@
+:root {
+  --theme-light-text_color: var(--color-black);
+  --theme-light-background_color: var(--color-white);
+  --theme-light-color-red: var(--color-red_a11y);
+  --theme-light-color-green: var(--color-green_a11y);
+  --theme-light-color-blue: var(--color-blue_a11y);
+
+  &.theme\:light {
+    --theme-text_color: var(--theme-light-text_color);
+    --theme-background_color: var(--theme-light-background_color);
+
+    --color-red: var(--theme-light-color-red);
+    --color-green: var(--theme-light-color-green);
+    --color-blue: var(--theme-light-color-blue);
+  }
+
+  &.theme\:system {
+    @media (prefers-color-scheme: light) {
+      --theme-text_color: var(--theme-light-text_color);
+      --theme-background_color: var(--theme-light-background_color);
+
+      --color-red: var(--theme-light-color-red);
+      --color-green: var(--theme-light-color-green);
+      --color-blue: var(--theme-light-color-blue);
+    }
+  }
+}

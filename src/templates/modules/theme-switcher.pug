@@ -1,0 +1,26 @@
+mixin theme-switcher(options = {})
+  -
+    defaultOptions = {
+      defaultTheme: "theme:dark",
+      themes: ["dark", "light"]
+    }
+
+    options = Object.assign(defaultOptions, options)
+  form#theme-switch(data-default-theme=`theme:${options.defaultTheme}`)
+    mixin theme-switch-radio(id)
+      div(data-theme=`theme:${id}`): label
+        input(type="radio", name="theme-toggle")
+        if block
+          span: block
+
+    each theme in options.themes
+      +theme-switch-radio(theme)| #{theme}
+
+    div: label
+      button(type="reset") reset
+
+    div: label
+      input(type="checkbox", name="theme-remember")
+      span remember
+
+  script(src="/assets/js/theme-switcher.min.js")
